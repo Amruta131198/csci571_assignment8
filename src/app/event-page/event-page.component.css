@@ -25,8 +25,32 @@
     color: white;
 }
 
-button:focus {
+#searchFav:focus {
     border: solid 2px #ffffff;
     border-radius: 10px;
     outline: none;
+}
+
+/* *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+} */
+
+form{
+    /* height:fit-content; */
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: black;
+    color: white;
+    background: rgba(221, 205, 205, 0.284);
+    backdrop-filter: blur(20px); 
+}
+
+#basic
+{
+    font-size: 15px; 
+    font-family: Arial, Helvetica, sans-serif; 
+    color: rgb(124, 184, 204);
 }
