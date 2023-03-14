@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +14,7 @@
               <li type="button" class="nav-item col-xs-3"><button class="btn" id="searchFav">Search </button></li>
               <li type="button" class="nav-item col-xs-3"><button class="btn" id="searchFav">Favorites</button></li>
             </ul>
-    </nav>
+    </nav> 
 
     <section class="container mt-5 w-50 text-light p-5">
       <form class="row g-3 p-3" method="GET" onsubmit="">
@@ -23,8 +22,13 @@
         <hr style="opacity: 0.95; color: #ffffff;" width="80%">  
 
         <div class="col-12">
-          <label class="form-label" id="basic">Keyword<span style="color: red;">*</span></label>
-          <input type="text" class="form-control" required>
+              <label class="form-label" id="basic">Keyword<span style="color: red;">*</span></label>
+              <input matinput [matAutocomplete]="auto" type="text" id="keyword" name="keyword" class="form-control" required [formControl]="myControl">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">    
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
         </div>
 
         <div class="col-md-6">
@@ -63,7 +67,4 @@
      </section>
 
   </div>
-
-
 </body>
-</html>
