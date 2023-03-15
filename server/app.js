@@ -101,7 +101,7 @@ app.get('/events', (request, response) => {
         TICKETMASTER_URL_PATH += "&unit=miles";
         TICKETMASTER_URL_PATH += "&geoPoint=" + geoPoint;
 
-        TICKETMASTER_URL_PATH = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=xA2tBAPVCATlPhDfWMeAOSXAG3ZDr4zR&sort=date,asc&keyword=USC&segmentId=KZFzniwnSyZfZ7v7nE&radius=10&unit=miles&geoPoint=9q5cs';
+        // TICKETMASTER_URL_PATH = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=xA2tBAPVCATlPhDfWMeAOSXAG3ZDr4zR&sort=date,asc&keyword=USC&segmentId=KZFzniwnSyZfZ7v7nE&radius=10&unit=miles&geoPoint=9q5cs';
     
         console.log("TICKETMASTER : ", TICKETMASTER_URL_PATH);
         
