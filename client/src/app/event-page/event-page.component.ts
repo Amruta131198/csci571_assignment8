@@ -18,7 +18,7 @@ export class EventPageComponent implements OnInit {
   public IP_INFO_URL = 'https://ipinfo.io/?token=18175a85885dbc';
 
   // Stores auto-complete content
-  public choices : string[] = []; 
+  public choices : string[] = [];
   filteredOptions: Observable<string[]> | undefined;
 
   public eventForm  = new FormGroup({
@@ -32,6 +32,7 @@ export class EventPageComponent implements OnInit {
   public autoDetect = false;
   public eventsList:any;
   public showEventsTable = false;
+  public noRecords = false;
 
   public formInputValue : any = {
     keyword : '',
@@ -115,6 +116,7 @@ export class EventPageComponent implements OnInit {
     this.eventForm.reset({ category : "Default", distance : 10 });
     this.eventForm.get('location')?.enable();
     this.showEventsTable = false;
+    this.noRecords = false;
   }
 
   public onSubmit(form : any)
@@ -144,13 +146,25 @@ export class EventPageComponent implements OnInit {
     fetch(SERVER_URL)
     .then(response => response.json())
     .then(response => {
-      this.eventsList = response._embedded.events;
-
-      console.log("events: ", this.eventsList);
-      this.showEventsTable = true;
+      if(response.page.totalElements == 0)
+      {
+        this.noRecords = true;
+        this.showEventsTable = false;
+        console.log("No Records Found!");
+      }
+      else
+      {
+        this.eventsList = response._embedded.events;
+        console.log("events: ", this.eventsList);
+        this.showEventsTable = true;
+        this.noRecords = false;
+      }
     }
     ).catch((err) =>{
       console.error('error occurs',err);// server error
+      this.noRecords = true;
+      this.showEventsTable = false;
+      console.log("No Records Found!");
      });
 
   }
