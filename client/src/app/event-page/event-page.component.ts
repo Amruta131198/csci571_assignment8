@@ -21,8 +21,6 @@ export class EventPageComponent implements OnInit {
   public choices : string[] = []; 
   filteredOptions: Observable<string[]> | undefined;
 
-  public myControl = new FormControl();
-
   public eventForm  = new FormGroup({
       keyword: new FormControl(),
       distance: new FormControl(),
@@ -44,10 +42,11 @@ export class EventPageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.eventForm.get('keyword')?.valueChanges.pipe(
       startWith(''),
       map(value => this.serverCallForAutoComplete(value))
     );
+
   }
 
   serverCallForAutoComplete(key : string): string[]
@@ -56,7 +55,7 @@ export class EventPageComponent implements OnInit {
     console.log("Auto-complete backendUrl:", SERVER_URL);
     if(key != '' || key != null)
     {
-      const filterValue = key.toLowerCase();
+      const filterValue = key;//.toLowerCase();
       fetch(SERVER_URL)
         .then(result => result.json())
         .then(result => {
@@ -74,7 +73,6 @@ export class EventPageComponent implements OnInit {
   }
 
   displayFn(subject : string) {
-    // console.log(subject)
     return subject;
   }
 
@@ -83,7 +81,7 @@ export class EventPageComponent implements OnInit {
     this.autoDetect = !this.autoDetect;
     console.log("AutoDetect : " + this.autoDetect);
 
-    this.myControl.get('location')?.disable;
+    this.eventForm.get('location')?.disable;
 
     if(this.autoDetect == true)
     {
@@ -108,8 +106,17 @@ export class EventPageComponent implements OnInit {
       this.formInputValue.location = '';
       this.formInputValue.latitude = '';
       this.formInputValue.longitude = '';
-      console.log("User Input Location : " + this.formInputValue.location);      
     }
+  }
+
+  public clearForm()
+  {
+    this.eventForm.reset();
+    // this.formInputValue.keyword = '';
+    this.formInputValue.category = "Default";
+    this.defaultDistance = 10;
+    // this.formInputValue.location = '';
+
   }
 
   public onSubmit(form : any)
@@ -117,6 +124,34 @@ export class EventPageComponent implements OnInit {
     console.log("Submitted!!!!");
     console.log("Keyword : " + this.formInputValue.keyword + " , distance : " 
     + this.defaultDistance + ", category : " + this.formInputValue.category + ' , location : ' + this.formInputValue.location);
+
+    var SERVER_URL = this.PARENT_SERVER_URL + '/events?' ;
+
+    SERVER_URL += "keyword=" + this.formInputValue.keyword;
+    SERVER_URL += "&category=" + this.formInputValue.category;
+    SERVER_URL += "&distance=" + this.defaultDistance ;
+
+    if(this.autoDetect)
+    {
+      SERVER_URL += "&location=" + "Current";
+      SERVER_URL += "&latitude=" + this.formInputValue.latitude;
+      SERVER_URL += "&longitude=" + this.formInputValue.longitude;
+    }
+    else{
+      SERVER_URL += "&location=" + this.formInputValue.location;
+    }
+
+    console.log("Final URL : "+SERVER_URL);
+
+    fetch(SERVER_URL)
+    .then(response => response.json())
+    .then(response => {
+      console.log("events: ", response);
+    }
+    ).catch((err) =>{
+      console.error('error occurs',err);// server error
+     })
+
   }
 
 }

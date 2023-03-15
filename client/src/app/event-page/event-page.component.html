@@ -11,13 +11,13 @@
     </nav>
     
     <section class="container mt-5 w-50 text-light p-5">
-      <form class="row g-3 p-3" method="GET" (ngSubmit)="onSubmit(eventForm)" [formGroup] = "eventForm">
+      <form class="row g-3 p-3" method="GET" (ngSubmit)="onSubmit(eventForm)" [formGroup] = "eventForm" ngNativeValidate>
         <h2 align="center" style="color: white; font-family: 'Times New Roman', Times, serif; font-size: 35px; font-weight: lighter;">Events Search</h2>
         <hr style="opacity: 0.95; color: #ffffff;" width="80%">  
 
         <div class="col-12">
               <label class="form-label" id="basic">Keyword<span style="color: red;">*</span></label>
-              <input matinput [matAutocomplete]="auto" type="text" id="keyword" [(ngModel)]="formInputValue.keyword" formControlName="keyword" class="form-control" required [formControl]="myControl" [matAutocompletePosition]="'above'" >
+              <input matInput [matAutocomplete]="auto" type="text" id="keyword" [(ngModel)]="formInputValue.keyword" formControlName="keyword" class="form-control" required >
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
                   <mat-option *ngFor="let option of filteredOptions | async" [value]="option" style="color: white;">
                     {{option}}
@@ -43,11 +43,11 @@
           
         <div class="col-12">
           <label class="form-label" id="basic">Location<span style="color: red;">*</span></label>
-          <input type="text" class="form-control" formControlName = "location"  required [(ngModel)]="formInputValue.location" [formControl]="myControl" >
+          <input type="text" class="form-control" formControlName = "location" required [(ngModel)]="formInputValue.location" >
         </div>
           <div class="col-12">
             <div class="form-check">
-              <input class="form-check-input" formControlName="locationCheckbox"  type="checkbox" id="gridCheck" [checked] = "autoDetect" [formControl]="myControl" (change) = "fetchLocation(this)">
+              <input class="form-check-input" formControlName="locationCheckbox"  type="checkbox" id="gridCheck" [checked] = "autoDetect" (change) = "fetchLocation(this)">
               <label class="form-check-label" for="gridCheck" id="basic">
                 Auto-detect your location
               </label>
@@ -56,7 +56,7 @@
 
           <div class="col-md-12 text-center mb-4">
             <input id="formSearchButton" type="submit" class="btn m-2" value="SUBMIT">
-            <button id="formClearButton" type="button" class="btn m-2">CLEAR</button>
+            <button id="formClearButton" type="button" class="btn m-2" (click)="clearForm()">CLEAR</button>
          </div>
         </form>
      </section>
