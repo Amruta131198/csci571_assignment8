@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormControl, FormGroup } from '@angular/forms'
 import { Observable } from 'rxjs'
 import { map, startWith } from 'rxjs/operators'
 
@@ -11,7 +11,7 @@ import { map, startWith } from 'rxjs/operators'
 })
 export class EventPageComponent implements OnInit {
 
-  constructor(private http : HttpClient, private fb : FormBuilder) { }
+  constructor(private http : HttpClient) { }
 
   defaultDistance : number = 10;
   public PARENT_SERVER_URL : String = 'http://localhost:3000';
@@ -30,6 +30,8 @@ export class EventPageComponent implements OnInit {
     });
 
   public autoDetect = false;
+  public eventsList:any;
+  public showEventsTable = false;
 
   public formInputValue : any = {
     keyword : '',
@@ -53,22 +55,21 @@ export class EventPageComponent implements OnInit {
   {
     var SERVER_URL = this.PARENT_SERVER_URL + '/autocomplete?keyword=' + key;
     console.log("Auto-complete backendUrl:", SERVER_URL);
-    if(key != '' || key != null)
-    {
-      const filterValue = key;//.toLowerCase();
-      fetch(SERVER_URL)
-        .then(result => result.json())
-        .then(result => {
-          var autoCompleteResponseList = [];
-          for(var i = 0 ; i < result.attractions.length ; i++)
-          {
-            autoCompleteResponseList.push(result.attractions[i].name);
-          }
-          this.choices = autoCompleteResponseList;
-        })
-  
-        console.log("Choices: "+this.choices);
-    }
+    
+    const filterValue = key;//.toLowerCase();
+    fetch(SERVER_URL)
+      .then(result => result.json())
+      .then(result => {
+        var autoCompleteResponseList = [];
+        for(var i = 0 ; i < result.attractions.length ; i++)
+        {
+          autoCompleteResponseList.push(result.attractions[i].name);
+        }
+        this.choices = autoCompleteResponseList;
+      })
+
+      console.log("Choices: "+this.choices);
+    
       return this.choices;
   }
 
@@ -111,12 +112,9 @@ export class EventPageComponent implements OnInit {
 
   public clearForm()
   {
-    this.eventForm.reset();
-    // this.formInputValue.keyword = '';
-    this.formInputValue.category = "Default";
-    this.defaultDistance = 10;
-    // this.formInputValue.location = '';
-
+    this.eventForm.reset({ category : "Default", distance : 10 });
+    this.eventForm.get('location')?.enable();
+    this.showEventsTable = false;
   }
 
   public onSubmit(form : any)
@@ -146,11 +144,19 @@ export class EventPageComponent implements OnInit {
     fetch(SERVER_URL)
     .then(response => response.json())
     .then(response => {
-      console.log("events: ", response);
+      this.eventsList = response._embedded.events;
+
+      console.log("events: ", this.eventsList);
+      this.showEventsTable = true;
     }
     ).catch((err) =>{
       console.error('error occurs',err);// server error
-     })
+     });
+
+  }
+
+  public getEventsInfo(id : any)
+  {
 
   }
 
