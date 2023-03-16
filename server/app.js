@@ -43,7 +43,12 @@ app.get('/events', (request, response) => {
                 request.query.longitude = longitude;
 
                 getEventInformation(request)
-             })
+             }).catch( error => {
+                console.error(error);
+                response.header("Access-Control-Allow-Origin", "*");
+                response.send(JSON.stringify(''));
+                console.log("Geo Response Sent as Null!");
+            });
     }
 
     //Event Search API call
@@ -182,6 +187,34 @@ app.get('/spotify', (request, response) => {
 
 );
 });
+
+// Event Details API call
+app.get('/eventDetails', (request, response) => {
+
+    console.log(":::: REQUEST QUERY ====> " + request.query);
+    console.log(":::: EVENT ID ====> " + request.query.id);
+
+    axios.get('https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=xA2tBAPVCATlPhDfWMeAOSXAG3ZDr4zR&id=' + request.query.id)
+         .then(result => {
+            console.log("RESULT FOR EVENT DETAILS ::: "+ result);
+            response.header("Access-Control-Allow-Origin", "*");
+
+            if(result.data.hasOwnProperty("_embedded"))
+            {
+                console.log("RESULT DATA : " + result.data)
+                response.send(JSON.stringify(result.data));
+            }
+            else
+            {
+                console.log("_embedded property not found for Event Details! Sending empty response.");
+                response.send(JSON.stringify({}));
+            }
+            console.log("Event details Response Sent!");
+         })
+         .catch(err => {
+            console.log("Error Message : " + err);
+         })
+})
 
 // Venue Details API call
 app.get('/venueDetail', (request, response) => {
