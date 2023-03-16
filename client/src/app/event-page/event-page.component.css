@@ -67,3 +67,16 @@ form{
 {
     background-color: rgb(8, 71, 197);
 }
+
+#header th:first-child{
+    border-top-left-radius: 15px;
+  }
+tr:last-child td:first-child{
+    border-bottom-left-radius: 15px;
+  }
+#header th:last-child{
+    border-top-right-radius: 15px;
+  }
+tr:last-child td:last-child{
+    border-bottom-right-radius: 15px;
+  }

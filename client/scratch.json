@@ -1,0 +1,610 @@
+{
+    "events": [
+      {
+        "name": "Taylor Swift | The Eras Tour",
+        "type": "event",
+        "id": "vvG1IZ9p2w_7HY",
+        "test": false,
+        "url": "https://www.ticketmaster.com/taylor-swift-the-eras-tour-inglewood-california-08-03-2023/event/0A005D63F2644F30",
+        "locale": "en-us",
+        "images": [
+          {
+            "ratio": "3_2",
+            "url": "https://s1.ticketm.net/dam/a/477/955a0c60-463c-442a-a3bb-d10aa68dc477_1827641_TABLET_LANDSCAPE_3_2.jpg",
+            "width": 1024,
+            "height": 683,
+            "fallback": false
+          },
+          {
+            "ratio": "16_9",
+            "url": "https://s1.ticketm.net/dam/a/477/955a0c60-463c-442a-a3bb-d10aa68dc477_1827641_EVENT_DETAIL_PAGE_16_9.jpg",
+            "width": 205,
+            "height": 115,
+            "fallback": false
+          }
+        ],
+        "sales": {
+          "public": {
+            "startTBD": false,
+            "startTBA": false
+          },
+          "presales": [
+            {
+              "startDateTime": "2022-11-15T23:00:00Z",
+              "endDateTime": "2022-11-18T06:00:00Z",
+              "name": "TaylorSwiftTix powered by Verified Fan"
+            },
+            {
+              "startDateTime": "2022-11-15T23:00:00Z",
+              "endDateTime": "2022-11-18T06:00:00Z",
+              "name": "Verified Fan VIP Packages Presale"
+            }
+          ]
+        },
+        "dates": {
+          "start": {
+            "localDate": "2023-08-03",
+            "localTime": "18:30:00",
+            "dateTime": "2023-08-04T01:30:00Z",
+            "dateTBD": false,
+            "dateTBA": false,
+            "timeTBA": false,
+            "noSpecificTime": false
+          },
+          "timezone": "America/Los_Angeles",
+          "status": {
+            "code": "offsale"
+          },
+          "spanMultipleDays": false
+        },
+        "classifications": [
+          {
+            "primary": true,
+            "segment": {
+              "id": "KZFzniwnSyZfZ7v7nJ",
+              "name": "Music"
+            },
+            "genre": {
+              "id": "KnvZfZ7vAev",
+              "name": "Pop"
+            },
+            "subGenre": {
+              "id": "KZazBEonSMnZfZ7vk1t",
+              "name": "Pop"
+            },
+            "type": {
+              "id": "KZAyXgnZfZ7v7nI",
+              "name": "Undefined"
+            },
+            "subType": {
+              "id": "KZFzBErXgnZfZ7v7lJ",
+              "name": "Undefined"
+            },
+            "family": false
+          }
+        ],
+        "promoter": {
+          "id": "4240",
+          "name": "AEG - TICKETING",
+          "description": "AEG - TICKETING / NTL / NZL"
+        },
+        "promoters": [
+          {
+            "id": "4240",
+            "name": "AEG - TICKETING",
+            "description": "AEG - TICKETING / NTL / NZL"
+          }
+        ],
+        "pleaseNote": "Due to extraordinarily high demands on ticketing systems and insufficient remaining ticket inventory to meet that demand, the public on-sale for Taylor Swift | The Eras Tour has been cancelled. Capital One Cardholder Presale tickets are limited to six (6) tickets per transaction while supplies last. Neither Taylor Swift, Taylor Nation LLC, nor its affiliates guarantee or provide any third party product, service, information, or recommendation offered by Capital One. Capital One is solely responsible for its products and services. Concert dates, locations and artist lineup are subject to change without notice. The aforementioned Capital One Cardholder Presale is being offered as part of Capital One's multi-year partnership with Taylor Swift.",
+        "priceRanges": [
+          {
+            "type": "standard",
+            "currency": "USD",
+            "min": 104,
+            "max": 566
+          }
+        ],
+        "products": [
+          {
+            "name": "PARKWHIZ SOFI STADIUM",
+            "id": "vvG1IZ9pn7iwkE",
+            "url": "https://www.ticketmaster.com/parkwhiz-sofi-stadium-inglewood-california-08-03-2023/event/0A005D6A84B321A7",
+            "type": "Upsell",
+            "classifications": [
+              {
+                "primary": true,
+                "segment": {
+                  "id": "KZFzniwnSyZfZ7v7n1",
+                  "name": "Miscellaneous"
+                },
+                "genre": {
+                  "id": "KnvZfZ7v7ll",
+                  "name": "Undefined"
+                },
+                "subGenre": {
+                  "id": "KZazBEonSMnZfZ7vAv1",
+                  "name": "Undefined"
+                },
+                "type": {
+                  "id": "KZAyXgnZfZ7vAva",
+                  "name": "Parking"
+                },
+                "subType": {
+                  "id": "KZFzBErXgnZfZ7vAFe",
+                  "name": "Regular"
+                },
+                "family": false
+              }
+            ]
+          },
+          {
+            "name": "Taylor Swift 'Midnights': Moonstone Blue Edition CD",
+            "id": "vvG1IZ9psEJ-vW",
+            "url": "https://www.ticketmaster.com/taylor-swift-midnights-moonstone-blue-edition-inglewood-california-08-03-2023/event/0A005D6C679A107D",
+            "type": "Upsell",
+            "classifications": [
+              {
+                "primary": true,
+                "segment": {
+                  "id": "KZFzniwnSyZfZ7v7n1",
+                  "name": "Miscellaneous"
+                },
+                "genre": {
+                  "id": "KnvZfZ7v7ll",
+                  "name": "Undefined"
+                },
+                "subGenre": {
+                  "id": "KZazBEonSMnZfZ7vAv1",
+                  "name": "Undefined"
+                },
+                "type": {
+                  "id": "KZAyXgnZfZ7v7nJ",
+                  "name": "Upsell"
+                },
+                "subType": {
+                  "id": "KZFzBErXgnZfZ7vAkd",
+                  "name": "CD"
+                },
+                "family": false
+              }
+            ]
+          }
+        ],
+        "seatmap": {
+          "staticUrl": "https://maps.ticketmaster.com/maps/geometry/3/event/0A005D63F2644F30/staticImage?type=png&systemId=HOST"
+        },
+        "accessibility": {
+          "ticketLimit": 6
+        },
+        "ticketLimit": {
+          "info": "There is an overall 8 ticket limit for this event."
+        },
+        "ageRestrictions": {
+          "legalAgeEnforced": false
+        },
+        "ticketing": {
+          "safeTix": {
+            "enabled": true
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "/discovery/v2/events/vvG1IZ9p2w_7HY?locale=en-us"
+          },
+          "attractions": [
+            {
+              "href": "/discovery/v2/attractions/K8vZ9175Tr0?locale=en-us"
+            },
+            {
+              "href": "/discovery/v2/attractions/K8vZ9172Vd0?locale=en-us"
+            },
+            {
+              "href": "/discovery/v2/attractions/K8vZ917_vc7?locale=en-us"
+            }
+          ],
+          "venues": [
+            {
+              "href": "/discovery/v2/venues/KovZ917ACh0?locale=en-us"
+            }
+          ]
+        },
+        "_embedded": {
+          "venues": [
+            {
+              "name": "SoFi Stadium",
+              "type": "venue",
+              "id": "KovZ917ACh0",
+              "test": false,
+              "url": "https://www.ticketmaster.com/sofi-stadium-tickets-inglewood/venue/82789",
+              "locale": "en-us",
+              "images": [
+                {
+                  "ratio": "16_9",
+                  "url": "https://s1.ticketm.net/dbimages/21790v.jpg",
+                  "width": 205,
+                  "height": 115,
+                  "fallback": false
+                }
+              ],
+              "postalCode": "90301",
+              "timezone": "America/Los_Angeles",
+              "city": {
+                "name": "Inglewood"
+              },
+              "state": {
+                "name": "California",
+                "stateCode": "CA"
+              },
+              "country": {
+                "name": "United States Of America",
+                "countryCode": "US"
+              },
+              "address": {
+                "line1": "1001 S. Stadium Dr"
+              },
+              "location": {
+                "longitude": "-118.343767",
+                "latitude": "33.950529"
+              },
+              "markets": [
+                {
+                  "name": "Los Angeles",
+                  "id": "27"
+                }
+              ],
+              "dmas": [
+                {
+                  "id": 223
+                },
+                {
+                  "id": 324
+                },
+                {
+                  "id": 354
+                },
+                {
+                  "id": 383
+                }
+              ],
+              "upcomingEvents": {
+                "_total": 24,
+                "tmr": 1,
+                "ticketmaster": 23,
+                "_filtered": 0
+              },
+              "_links": {
+                "self": {
+                  "href": "/discovery/v2/venues/KovZ917ACh0?locale=en-us"
+                }
+              }
+            }
+          ],
+          "attractions": [
+            {
+              "name": "Taylor Swift",
+              "type": "attraction",
+              "id": "K8vZ9175Tr0",
+              "test": false,
+              "url": "https://www.ticketmaster.com/taylor-swift-tickets/artist/1094215",
+              "locale": "en-us",
+              "externalLinks": {
+                "youtube": [
+                  {
+                    "url": "https://www.youtube.com/user/TaylorSwiftVEVO"
+                  },
+                  {
+                    "url": "https://www.youtube.com/user/taylorswift"
+                  }
+                ],
+                "twitter": [
+                  {
+                    "url": "https://twitter.com/taylorswift13"
+                  }
+                ],
+                "itunes": [
+                  {
+                    "url": "https://music.apple.com/ca/artist/taylor-swift/159260351"
+                  }
+                ],
+                "lastfm": [
+                  {
+                    "url": "http://www.last.fm/music/Taylor+Swift"
+                  }
+                ],
+                "facebook": [
+                  {
+                    "url": "https://www.facebook.com/TaylorSwift"
+                  }
+                ],
+                "wiki": [
+                  {
+                    "url": "https://en.wikipedia.org/wiki/Taylor_Swift"
+                  }
+                ],
+                "spotify": [
+                  {
+                    "url": "https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02?autoplay=true"
+                  }
+                ],
+                "instagram": [
+                  {
+                    "url": "http://instagram.com/taylorswift/"
+                  },
+                  {
+                    "url": "http://instagram.com/taylorswift"
+                  }
+                ],
+                "musicbrainz": [
+                  {
+                    "id": "20244d07-534f-4eff-b4d4-930878889970"
+                  }
+                ],
+                "homepage": [
+                  {
+                    "url": "https://www.taylorswift.com/"
+                  }
+                ]
+              },
+              "aliases": [
+                "taylor",
+                "taylor swift",
+                "tayler swift",
+                "swifty",
+                "tay",
+                "t-swizzle",
+                "t swift"
+              ],
+              "images": [
+                {
+                  "ratio": "3_2",
+                  "url": "https://s1.ticketm.net/dam/a/477/955a0c60-463c-442a-a3bb-d10aa68dc477_1827641_TABLET_LANDSCAPE_3_2.jpg",
+                  "width": 1024,
+                  "height": 683,
+                  "fallback": false
+                },
+                {
+                  "ratio": "16_9",
+                  "url": "https://s1.ticketm.net/dam/a/477/955a0c60-463c-442a-a3bb-d10aa68dc477_1827641_EVENT_DETAIL_PAGE_16_9.jpg",
+                  "width": 205,
+                  "height": 115,
+                  "fallback": false
+                }
+              ],
+              "classifications": [
+                {
+                  "primary": true,
+                  "segment": {
+                    "id": "KZFzniwnSyZfZ7v7nJ",
+                    "name": "Music"
+                  },
+                  "genre": {
+                    "id": "KnvZfZ7vAev",
+                    "name": "Pop"
+                  },
+                  "subGenre": {
+                    "id": "KZazBEonSMnZfZ7vk1t",
+                    "name": "Pop"
+                  },
+                  "type": {
+                    "id": "KZAyXgnZfZ7v7nI",
+                    "name": "Undefined"
+                  },
+                  "subType": {
+                    "id": "KZFzBErXgnZfZ7v7lJ",
+                    "name": "Undefined"
+                  },
+                  "family": false
+                }
+              ],
+              "upcomingEvents": {
+                "_total": 53,
+                "tmr": 5,
+                "ticketweb": 1,
+                "ticketmaster": 47,
+                "_filtered": 0
+              },
+              "_links": {
+                "self": {
+                  "href": "/discovery/v2/attractions/K8vZ9175Tr0?locale=en-us"
+                }
+              }
+            },
+            {
+              "name": "HAIM",
+              "type": "attraction",
+              "id": "K8vZ9172Vd0",
+              "test": false,
+              "url": "https://www.ticketmaster.com/haim-tickets/artist/1732290",
+              "locale": "en-us",
+              "externalLinks": {
+                "youtube": [
+                  {
+                    "url": "https://www.youtube.com/user/HaimTheBand"
+                  },
+                  {
+                    "url": "https://www.youtube.com/user/HaimVEVO"
+                  }
+                ],
+                "twitter": [
+                  {
+                    "url": "https://twitter.com/HAIMtheband"
+                  }
+                ],
+                "itunes": [
+                  {
+                    "url": "https://itunes.apple.com/artist/id164483115"
+                  }
+                ],
+                "facebook": [
+                  {
+                    "url": "https://www.facebook.com/haimtheband"
+                  }
+                ],
+                "wiki": [
+                  {
+                    "url": "https://en.wikipedia.org/wiki/Haim_(band)"
+                  }
+                ],
+                "instagram": [
+                  {
+                    "url": "https://instagram.com/haimtheband"
+                  },
+                  {
+                    "url": "https://instagram.com/haimtheband/"
+                  }
+                ],
+                "musicbrainz": [
+                  {
+                    "id": "aef06569-098f-4218-a577-b413944d9493"
+                  }
+                ],
+                "homepage": [
+                  {
+                    "url": "http://haimtheband.com/"
+                  }
+                ]
+              },
+              "images": [
+                {
+                  "ratio": "16_9",
+                  "url": "https://s1.ticketm.net/dam/a/fee/e7c987bc-2232-42f0-adbc-ee03c68b8fee_1576591_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+                  "width": 2048,
+                  "height": 1152,
+                  "fallback": false
+                },
+                {
+                  "ratio": "4_3",
+                  "url": "https://s1.ticketm.net/dam/a/fee/e7c987bc-2232-42f0-adbc-ee03c68b8fee_1576591_CUSTOM.jpg",
+                  "width": 305,
+                  "height": 225,
+                  "fallback": false
+                }
+              ],
+              "classifications": [
+                {
+                  "primary": true,
+                  "segment": {
+                    "id": "KZFzniwnSyZfZ7v7nJ",
+                    "name": "Music"
+                  },
+                  "genre": {
+                    "id": "KnvZfZ7vAeA",
+                    "name": "Rock"
+                  },
+                  "subGenre": {
+                    "id": "KZazBEonSMnZfZ7v6F1",
+                    "name": "Pop"
+                  },
+                  "type": {
+                    "id": "KZAyXgnZfZ7v7nI",
+                    "name": "Undefined"
+                  },
+                  "subType": {
+                    "id": "KZFzBErXgnZfZ7v7lJ",
+                    "name": "Undefined"
+                  },
+                  "family": false
+                }
+              ],
+              "upcomingEvents": {
+                "_total": 11,
+                "ticketmaster": 11,
+                "_filtered": 0
+              },
+              "_links": {
+                "self": {
+                  "href": "/discovery/v2/attractions/K8vZ9172Vd0?locale=en-us"
+                }
+              }
+            },
+            {
+              "name": "Gracie Abrams",
+              "type": "attraction",
+              "id": "K8vZ917_vc7",
+              "test": false,
+              "url": "https://www.ticketmaster.com/gracie-abrams-tickets/artist/2763148",
+              "locale": "en-us",
+              "externalLinks": {
+                "twitter": [
+                  {
+                    "url": "https://twitter.com/gracieabrams"
+                  }
+                ],
+                "facebook": [
+                  {
+                    "url": "https://www.facebook.com/gracieabrams"
+                  }
+                ],
+                "spotify": [
+                  {
+                    "url": "https://open.spotify.com/artist/4tuJ0bMpJh08umKkEXKUI5?si=elkeHtb9S9GKbxcWcuhaCQ"
+                  }
+                ],
+                "instagram": [
+                  {
+                    "url": "https://www.instagram.com/gracieabrams/"
+                  }
+                ]
+              },
+              "images": [
+                {
+                  "ratio": "3_2",
+                  "url": "https://s1.ticketm.net/dam/a/a44/8f19f1d0-da7c-4b38-89fd-5d08baa6ba44_ARTIST_PAGE_3_2.jpg",
+                  "width": 305,
+                  "height": 203,
+                  "fallback": false
+                },
+                {
+                  "ratio": "4_3",
+                  "url": "https://s1.ticketm.net/dam/a/a44/8f19f1d0-da7c-4b38-89fd-5d08baa6ba44_CUSTOM.jpg",
+                  "width": 305,
+                  "height": 225,
+                  "fallback": false
+                }
+              ],
+              "classifications": [
+                {
+                  "primary": true,
+                  "segment": {
+                    "id": "KZFzniwnSyZfZ7v7nJ",
+                    "name": "Music"
+                  },
+                  "genre": {
+                    "id": "KnvZfZ7vAeA",
+                    "name": "Rock"
+                  },
+                  "subGenre": {
+                    "id": "KZazBEonSMnZfZ7v6F1",
+                    "name": "Pop"
+                  },
+                  "type": {
+                    "id": "KZAyXgnZfZ7v7lt",
+                    "name": "Event Style"
+                  },
+                  "subType": {
+                    "id": "KZFzBErXgnZfZ7vA6J",
+                    "name": "Concert"
+                  },
+                  "family": false
+                }
+              ],
+              "upcomingEvents": {
+                "_total": 58,
+                "mfx-nl": 1,
+                "tmr": 12,
+                "ticketweb": 2,
+                "ticketmaster": 42,
+                "mfx-be": 1,
+                "_filtered": 0
+              },
+              "_links": {
+                "self": {
+                  "href": "/discovery/v2/attractions/K8vZ917_vc7?locale=en-us"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
