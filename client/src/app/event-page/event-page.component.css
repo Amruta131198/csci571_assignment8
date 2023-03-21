@@ -48,7 +48,7 @@ form{
     color: rgb(124, 184, 204);
 }
 
-#formSearchButton
+#formSearchButton, #googleMapsButton
 {
     background-color: rgb(255, 36, 36);
 }
@@ -80,3 +80,54 @@ tr:last-child td:first-child{
 tr:last-child td:last-child{
     border-bottom-right-radius: 15px;
   }
+
+  [aria-label="secondary"] {
+    background-color: #35e5ced2;
+    font-weight: bolder;
+    color: #ffffff;
+  }
+
+.mdc-tab__text-label
+{
+    color: #ffffff !important;
+}
+
+h5{
+    color: #35e5ced2;;
+}
+
+.venueDetailRow1 p
+{
+    font-size: 12px;
+}
+
+.truncate {
+    display: block;
+    max-height: 3.6em;
+    line-height: 1.8em;
+  }
+
+.modal-dialog
+{
+    width: fit-content;
+}
+
+.modal-backdrop {
+    --bs-backdrop-zindex: 1050;
+    --bs-backdrop-bg: #000;
+    --bs-backdrop-opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--bs-backdrop-zindex);
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bs-backdrop-bg);
+}
+.fade {
+    transition: opacity .15s linear;
+}
+
+.modal-backdrop.show {
+    opacity: var(--bs-backdrop-opacity);
+}

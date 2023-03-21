@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
-import { Observable } from 'rxjs'
-import { map, startWith } from 'rxjs/operators'
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-event-page',
   templateUrl: './event-page.component.html',
-  styleUrls: ['./event-page.component.css']
+  styleUrls: ['./event-page.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EventPageComponent implements OnInit {
 
@@ -35,6 +36,7 @@ export class EventPageComponent implements OnInit {
   public eventsList : any;
   public specificEvent : any;
   public showEventsTable = false;
+  public showEventsDetail = false;
   public noRecords = false;
   public seatMapURL:string = 'seatMapURL' ; //seat map url
   public spotifyArtistList:any = [];
@@ -75,7 +77,19 @@ export class EventPageComponent implements OnInit {
     OpenHours: '',
     GeneralRule: '',
     ChildRule: '',
+    Latitude : '',
+    Longitude : ''
   }
+
+  showOpenHours = false;
+  openHoursText : String = this.venueDetailContent.OpenHours;
+  showGeneralRule = false;
+  generalRulesText : String = this.venueDetailContent.GeneralRule;
+  showChildRule = false;
+  childRuleText : String = this.venueDetailContent.ChildRule
+  
+  mapOptions : google.maps.MapOptions = {};
+  marker : any = {};
 
   ngOnInit() {
 
@@ -110,6 +124,45 @@ export class EventPageComponent implements OnInit {
 
   displayFn(subject : string) {
     return subject;
+  }
+
+  public showOpenHoursFunction()
+  {
+    this.showOpenHours = !this.showOpenHours;
+    if(this.showOpenHours)
+    {
+      this.openHoursText = this.venueDetailContent.OpenHours;
+    }
+    else{
+      this.openHoursText = this.venueDetailContent.OpenHours.slice(0, 70);
+    }
+    console.log("openHoursText : " + this.openHoursText);
+  }
+
+  public showGeneralRuleFunction()
+  {
+    this.showGeneralRule = !this.showGeneralRule;
+    if(this.showGeneralRule)
+    {
+      this.generalRulesText = this.venueDetailContent.GeneralRule;
+    }
+    else{
+      this.generalRulesText = this.venueDetailContent.GeneralRule.slice(0, 70);
+    }
+    console.log("generalRulesText : " + this.generalRulesText);
+  }
+
+  public showChildRuleFunction()
+  {
+    this.showChildRule = !this.showChildRule;
+    if(this.showChildRule)
+    {
+      this.childRuleText = this.venueDetailContent.ChildRule;
+    }
+    else{
+      this.childRuleText = this.venueDetailContent.ChildRule.slice(0, 70);
+    }
+    console.log("childRuleText : " + this.childRuleText);
   }
 
   public fetchLocation(key : any)
@@ -151,11 +204,13 @@ export class EventPageComponent implements OnInit {
     this.eventForm.get('location')?.enable();
     this.showEventsTable = false;
     this.noRecords = false;
+    this.showEventsDetail = false;
   }
 
   public onSubmit(form : any)
   {
     console.log("Submitted!!!!");
+    this.showEventsDetail = false;
     console.log("Keyword : " + this.formInputValue.keyword + " , distance : " 
     + this.defaultDistance + ", category : " + this.formInputValue.category + ' , location : ' + this.formInputValue.location);
 
@@ -271,15 +326,28 @@ export class EventPageComponent implements OnInit {
               OpenHours : '',
               GeneralRule : '',
               ChildRule : '',
+              Latitude : '',
+              Longitude : ''
             };
             this.artistContentList = [];
 
-            if(response.hasOwnProperty('venues') && 
-            response.venues.length > 0){
+            if(response.hasOwnProperty('venues') && response.venues.length > 0){
               for(var k = 0; k < response.venues.length; ++k){
+
                 if(response.venues[k].name != this.eventDetailContent.Venue){
                   continue
                 }
+
+                this.mapOptions ={
+                  center: { lat: parseFloat(response.venues[k].location.latitude), lng: parseFloat(response.venues[k].location.longitude) },
+                  zoom : 14
+                }
+                this.marker = {
+                    position: { lat: parseFloat(response.venues[k].location.latitude), lng: parseFloat(response.venues[k].location.longitude) },
+                }
+
+                this.venueDetailContent.Latitude = response.venues[k].location.latitude;
+                this.venueDetailContent.Longitude = response.venues[k].location.longitude;
 
                 if(response.venues[k].hasOwnProperty('address')){
                   if(response.venues[k].address.hasOwnProperty('line1')){
@@ -307,19 +375,41 @@ export class EventPageComponent implements OnInit {
                   }
 
                   if(response.venues[k].boxOfficeInfo.hasOwnProperty('openHoursDetail')){
-                    this.venueDetailContent.OpenHours = response.venues[k].boxOfficeInfo.openHoursDetail
+                    this.venueDetailContent.OpenHours = response.venues[k].boxOfficeInfo.openHoursDetail;
+                    if(this.showOpenHours)
+                    {
+                      this.openHoursText = this.venueDetailContent.OpenHours;
+                    }
+                    else{
+                      this.openHoursText = this.venueDetailContent.OpenHours.slice(0, 70);
+                    }
                   }
                 }
   
                 if(response.venues[k].hasOwnProperty('generalInfo')){
                   if(response.venues[k].generalInfo.hasOwnProperty('generalRule')){
-                    this.venueDetailContent.GeneralRule = response.venues[k].generalInfo.generalRule
+                    this.venueDetailContent.GeneralRule = response.venues[k].generalInfo.generalRule;
+                    if(this.showGeneralRule)
+                    {
+                      this.generalRulesText = this.venueDetailContent.GeneralRule;
+                    }
+                    else{
+                      this.generalRulesText = this.venueDetailContent.GeneralRule.slice(0, 70);
+                    }
                   }
 
                   if(response.venues[k].generalInfo.hasOwnProperty('childRule')){
-                    this.venueDetailContent.ChildRule = response.venues[k].generalInfo.childRule
+                    this.venueDetailContent.ChildRule = response.venues[k].generalInfo.childRule;
+                    if(this.showChildRule)
+                    {
+                      this.childRuleText = this.venueDetailContent.ChildRule;
+                    }
+                    else{
+                      this.childRuleText = this.venueDetailContent.ChildRule.slice(0, 70);
+                    }
                   }
                 }
+                
                 console.log("this.venueDetailContent", this.venueDetailContent)
               }
           }
@@ -344,6 +434,11 @@ export class EventPageComponent implements OnInit {
               {
                 ArtistTeam += ' | ';
               }
+
+              if( i > 1 && i%2 == 0)
+            {
+              ArtistTeam +=  "\n";
+            }
             }
           }
 
@@ -423,16 +518,21 @@ export class EventPageComponent implements OnInit {
             this.seatMapURL = seatMap;
         }
         if(seatMap != ''){
-          this.specificEvent.SeatMap = seatMap;
+          this.eventDetailContent.SeatMap = seatMap;
         }
 
         console.log("this.eventDetailContent ::: ", this.eventDetailContent);
         console.log("this.eventDetailContent.VenueId ::: ", this.eventDetailContent.VenueId);
 
         // Twitter
-        this.TWITTER_API_CALL = "https://twitter.com/intent/tweet?text=Check " + this.eventDetailContent.Name + " on Ticketmaster." + this.specificEvent.url;
+        var textValue = this.eventDetailContent.Name;
+        if(textValue.includes('|'))
+        {
+          textValue = textValue.replace('|', ' ');
+          console.log("Text Value : " + textValue);
+        }
+        this.TWITTER_API_CALL = "https://twitter.com/intent/tweet?text=Check " + textValue + " on Ticketmaster&url=" +  this.specificEvent.url;
         console.log("TWITTER URL : " + this.TWITTER_API_CALL);
-
         // Facebook
         this.FACEBOOK_API_CALL = "https://www.facebook.com/sharer/sharer.php?u=" + this.specificEvent.url;
         console.log("FACEBOOK URL : " + this.FACEBOOK_API_CALL);
@@ -462,6 +562,8 @@ export class EventPageComponent implements OnInit {
             });
           }
         }
+        this.showEventsDetail = true;
+        this.showEventsTable = false;
       }
     }
     }).catch((err) =>{
@@ -485,11 +587,13 @@ export class EventPageComponent implements OnInit {
               if(artistName == this.eventDetailContent.ArtistTeamList[k]){  
                 console.log("Artist MAtch found!!!");
                 this.eventDetailContent.ArtistTeamList.splice(k, 1);
-                eachArtistContent.push({Name:artistName,
-                                    Followers: this.spotifyArtistList[i].artists.items[j].followers.total,
-                                    Popularity: this.spotifyArtistList[i].artists.items[j].popularity,
-                                    SpotifyLink: this.spotifyArtistList[i].artists.items[j].external_urls.spotify,
-                                    NoDetails:false
+                eachArtistContent.push({
+                                        Name:artistName,
+                                        Followers: this.spotifyArtistList[i].artists.items[j].followers.total,
+                                        Popularity: this.spotifyArtistList[i].artists.items[j].popularity,
+                                        SpotifyLink: this.spotifyArtistList[i].artists.items[j].external_urls.spotify,
+                                        ArtistImage: this.spotifyArtistList[i].artists.items[j].images[0].url,
+                                        NoDetails:false
                                   });
                 break;
               }

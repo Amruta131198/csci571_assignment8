@@ -80,7 +80,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let ele of eventsList; " (click)="getEventsInfo(ele.id);">
+            <tr *ngFor="let ele of eventsList; " (click)="getEventsInfo(ele.id);" style="cursor: pointer;">
               <td scope="row">{{ ele.dates.start.localDate }}<br>{{ ele.dates.start.localTime }}</td>
               <td><img src="{{ele.images[0].url}}" style="width: 100px; height: 100px;"></td>
               <td>{{ele["name"]}}</td>
@@ -92,5 +92,218 @@
       </div>
     </section>
 
+    <section *ngIf="showEventsDetail">
 
+      <div class="container card text-white mt-5 mb-5 w-50 p-0 w-sm-75" style="background: rgba(221, 205, 205, 0.284); backdrop-filter: blur(20px); ">
+        <div class="m-2"><a (click)="showEventsTable=true; showEventsDetail = false" style="cursor: pointer;"><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_left</i><u style=" font-size:16px; line-height:24px;">Back</u></a></div> <!--<i class="bi bi-arrow-left"></i>-->
+          <div class="text-center mb-2"><strong><h4>{{eventDetailContent.Name}}</h4></strong></div>
+        
+
+        <mat-tab-group mat-align-tabs="center" color='primary'>
+          <!-- Event details -->
+          <mat-tab [label]="'Events'" [aria-label]="'secondary'" class="mat-tab-header">
+            <div class="row text-center mt-4" id="eventDetailRow1" >
+                <div class="col-md-6 col-sm-12" id="eventDetailCol1">
+                  <div class="mb-3" *ngIf="eventDetailContent.Time">
+                    <h5><strong>Date</strong></h5>
+                    <p>{{eventDetailContent.Time}}</p>
+                  </div>
+                  <div class="mb-3" *ngIf="eventDetailContent.ArtistTeam">
+                    <h5><strong>Artist/Team</strong></h5>
+                    <div style="width: 300px; white-space: pre-line;">{{eventDetailContent.ArtistTeam}}</div>
+                  </div>
+                  <div class="mb-3" *ngIf="eventDetailContent.Venue">
+                    <h5><strong>Venue</strong></h5>
+                    <p>{{eventDetailContent.Venue}}</p>
+                  </div>
+                  
+                  <div class="mb-3" *ngIf="eventDetailContent.Category">
+                    <h5><strong>Genre</strong></h5>
+                    <p>{{eventDetailContent.Category}}</p>
+                  </div>
+                  <div class="mb-3" *ngIf="eventDetailContent.PriceRange">
+                    <h5><strong>Price Ranges</strong></h5>
+                    <p>{{eventDetailContent.PriceRange}}</p>
+                  </div>
+                  <div class="mb-3 p-1" *ngIf="eventDetailContent.TicketStatus">
+                    <h5><strong>Ticket Status</strong></h5>
+                    <div class="w-auto h-auto d-inline-block">
+                      <p *ngIf="eventDetailContent.TicketStatus == 'onsale'" style="background-color:green; border-radius:5px;"><span class="p-2">On Sale</span></p>
+                      <p *ngIf="eventDetailContent.TicketStatus == 'offsale'" style="background-color:red; border-radius:5px;"><span class="p-2">Off Sale</span></p>
+                      <p *ngIf="eventDetailContent.TicketStatus == 'cancelled'" style="background-color:black; border-radius:5px;"><span class="p-2">Cancelled</span></p>
+                      <p *ngIf="eventDetailContent.TicketStatus == 'postponed'" style="background-color:orange; border-radius:5px;"><span class="p-2">Postponed</span></p>
+                      <p *ngIf="eventDetailContent.TicketStatus == 'rescheduled'" style="background-color:orange; border-radius:5px;"><span class="p-2">Rescheduled</span></p>
+                    </div>
+                  </div>
+                  <div class="mb-3" *ngIf="eventDetailContent.BuyTicketAt">
+                    <h5><strong>Buy Ticket At:</strong></h5>
+                    <p><a href="{{eventDetailContent.BuyTicketAt}}" target="_blank">Ticketmaster</a></p>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-12 d-flex flex-wrap align-items-center" id="eventDetailCol2" style="padding-left: 0px; vertical-align:middle;">
+                  <div class="mb-3" *ngIf="eventDetailContent.SeatMap">
+                      <img src="{{eventDetailContent.SeatMap}}" class="img-fluid"/>
+                  </div>
+                </div>
+            </div>
+            <div class="container text-center d-flex justify-content-center mt-3" id="eventDetailRow2" >
+                <div class="d-flex flex-row gap-2 mb-4">
+                  <label class="mt-1" style="font-size: 13px;">Share on:</label>
+                  <a href="{{TWITTER_API_CALL}}" target="_blank"><i class="bi bi-twitter" style="color: #1DA1F2;"></i></a>
+                  <a href="{{FACEBOOK_API_CALL}}" target="_blank"><i class='fab fa-facebook-square'></i></a>
+                </div>
+            </div>
+          </mat-tab>
+
+           <!-- Artist/Teams -->
+           <mat-tab [label]="'Artist/Teams'" [aria-label]="'secondary'">
+            <div *ngIf="artistContentList?.length == 0">
+              <div class="alert alert-warning">
+                No records.
+              </div>
+            </div>
+            <div *ngIf="artistContentList?.length > 0">
+
+              <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+            
+                  <!-- ngfor loop using get dynamic value and ngclass for add acive class -->
+                  <div class="carousel-item" *ngFor="let result of artistContentList; let i = index" [ngClass]="{'active': i === 1}">
+                    <div class="row text-center mt-4" id="artistDetailRow1" >
+                      <div class="col-md-6 col-sm-12" id="artistDetailCol1">
+                        <img src={{result.ArtistImage}} title={{result.Name}} style="height: 150px; width: 150px; border-radius: 50%;"/>
+                        <h4 class="mt-2" style="color: #35e5ced2;">{{result.Name}}</h4>
+                      </div>
+                      <div class="col-md-6 col-sm-12" id="artistDetailCol2">
+                        <h4 class="mt-2" style="color: #35e5ced2;">Popularity</h4>
+                        <circle-progress [percent]="result.Popularity" [radius]="20" [title]="result.Popularity"></circle-progress>
+                      </div>
+                    </div>
+                   
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+
+
+
+              <!-- <table class="table table-hover" *ngFor="let item of artistContentList; let i = index">
+                <div align="center">
+                    {{item.Name}}
+                </div>
+                <div *ngIf="item.NoDetails == true" align="center">
+                  No details available
+                </div>
+                <tbody *ngIf="item.NoDetails == false">
+                  <tr>
+                    <td>Name</td><td>{{item.Name}}</td>
+                  </tr>
+                  <tr>
+                    <td>Followers</td><td>{{item.Followers | number }}</td>
+                  </tr>
+                  <tr>
+                    <td>Popularity</td>
+                    <td>
+                      <div style="position: relative;"><round-progress 
+                      [current]="item.Popularity" 
+                      [max]="100"
+                      [color]="'red'"
+                      [stroke]="5"
+                      [radius]="20"
+                      ></round-progress>
+                      <p style="position: absolute;top: 0%; left:3%; margin-top: 3%;">{{item.Popularity}}</p>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Check At</td><td><a href={{item.SpotifyLink}} target="_blank">Spotify</a></td>
+                  </tr>
+                </tbody>
+              </table> -->
+          </div>
+           </mat-tab>
+
+            <!-- Venue -->
+          <mat-tab [label]="'Venue'" [aria-label]="'secondary'">
+            <div class="row text-center mt-4" id="venueDetailRow1" >
+              <div class="col-md-6 col-sm-12" id="venueDetailCol1">
+                <div class="mb-3" *ngIf="eventDetailContent.Venue">
+                  <h5><strong>Name</strong></h5>
+                  <p>{{eventDetailContent.Venue}}</p>
+                </div>
+                <div class="mb-3" *ngIf="venueDetailContent.Address">
+                  <h5><strong>Address</strong></h5>
+                  <p>{{venueDetailContent.Address}}</p>
+                </div>
+                <div class="mb-3" *ngIf="venueDetailContent.PhoneNumber">
+                  <h5><strong>Phone Number</strong></h5>
+                  <p>{{venueDetailContent.PhoneNumber}}</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-sm-12" id="venueDetailCol2">
+                <div class="mb-3" *ngIf="venueDetailContent.OpenHours">
+                  <h5><strong>Open Hours</strong></h5>
+                  <p> <span *ngIf="!showOpenHours" class="truncate">{{ openHoursText }} <br/></span>
+                      <span *ngIf="showOpenHours" >{{ openHoursText }} <br/></span>
+                      <span *ngIf="!showOpenHours"><a href="javascript:;" (click)="showOpenHoursFunction()">Show More</a><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_down</i></span>
+                      <span *ngIf="showOpenHours" ><a href="javascript:;" (click)="showOpenHoursFunction()">Show Less</a><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_up</i></span>
+                  </p>
+                </div>
+                <div class="mb-3" *ngIf="venueDetailContent.GeneralRule">
+                  <h5><strong>General Rule</strong></h5>
+                  <p> <span *ngIf="!showGeneralRule" class="truncate">{{ generalRulesText }} <br/></span>
+                    <span *ngIf="showGeneralRule" >{{ generalRulesText }} <br/></span>
+                    <span *ngIf="!showGeneralRule"><a href="javascript:;" (click)="showGeneralRuleFunction()">Show More</a><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_down</i></span>
+                    <span *ngIf="showGeneralRule" ><a href="javascript:;" (click)="showGeneralRuleFunction()">Show Less</a><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_up</i></span>
+                  </p>
+                </div>
+                <div class="mb-3" *ngIf="venueDetailContent.ChildRule">
+                  <h5><strong>Child Rule</strong></h5>
+                  <p> <span *ngIf="!showChildRule" class="truncate">{{ childRuleText }} <br/></span>
+                    <span *ngIf="showChildRule" >{{ childRuleText }} <br/></span>
+                    <span *ngIf="!showChildRule"><a href="javascript:;" (click)="showChildRuleFunction()">Show More</a><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_down</i></span>
+                    <span *ngIf="showChildRule" ><a href="javascript:;" (click)="showChildRuleFunction()">Show Less</a><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_up</i></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row text-center mt-4" id="venueDetailRow2_my-google-map">
+                <div class="d-flex justify-content-center">
+                  <button type="button" id="googleMapsButton" class="btn mb-3" data-bs-toggle="modal" data-bs-target="#EventVenueModal">Show venue on Google map</button>
+                </div>
+            </div>
+          </mat-tab>
+
+        </mat-tab-group>
+
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="EventVenueModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Event Venue</h5>
+          </div>
+          <div class="modal-body">
+            <google-map [options]="mapOptions" width="400px" height="400px" align="center">
+              <map-marker [position]="marker.position"></map-marker>
+            </google-map>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal" style="color: #ffffff; background-color: black;">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
