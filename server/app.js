@@ -70,9 +70,6 @@ app.get('/events', (request, response) => {
 
         var segmentId = '';
 
-        //-------
-        request.query.category = 'Music';
-
         if (request.query.category != "Default")
         {
             if (request.query.category == "Music")
@@ -237,54 +234,6 @@ app.get('/spotifyAlbum', async (request, response) => {
         });
 });
 
-
-
-//Search Artist's Album in Spotify API call
-// app.get('/spotifyAlbum', (request, response) => {
-
-//     console.log(":::: REQUEST QUERY ====> " + request.query.artistId);
-
-//     var id = request.query.artistId;
-
-//     var SPOTIFY_API_CALL = new SpotifyWebApi({
-//         clientId: '657a16b519154096bd1b8e53e8659b8e',
-//         clientSecret: '1dd2a6650aa145cc91ee28251a535a90'
-//     });
-
-//     SPOTIFY_API_CALL.clientCredentialsGrant()
-//     .then(
-//             function(data)
-//             {
-//                 console.log("Access Token : " + data.body['access_token']);
-
-//                 SPOTIFY_API_CALL.setAccessToken(data.body['access_token']);
-
-//                 SPOTIFY_API_CALL.getArtistAlbums(id,limit=3)
-//                         .then(
-//                             function(data)
-//                             {
-//                                 console.log(":: ARTIST'S ALBUM :: " + data.body);
-
-//                                 response.header("Access-Control-Allow-Origin", "*");
-//                                 response.send(JSON.stringify(data.body));
-//                                 console.log("Spotify Artist's Album Response Sent!");
-//                             },
-
-//                             function(error)
-//                             {
-//                                 console.log("Error Message when fetching Spotify API : " + error);
-//                             }
-//                         );
-//                 },
-
-//                 function(error)
-//                 {
-//                     console.log("Error Message when fetching Spotify API : " + error);
-//                 }
-//                 );
-// });
-
-
 // Event Details API call
 app.get('/eventDetails', (request, response) => {
 
@@ -349,3 +298,53 @@ app.listen(3000, (req, res) => {
 //BQC-wvQNK1L27K8KZD6HMonK38_BSy_EuhY4rC_YoiUr3mY6_QeAGKuo-C9ly6QYExc8zIwu9yhL6unr5Mey3UJ-R9MYmi9kVSlFUeg4G_yiYhIqKgQn
 
 //curl -X "GET" "https://api.spotify.com/v1/artists/2cFrymmkijnjDg9SS92EPM/albums" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQDGLmyKw-VSbKjVCIKk_WLbwMpc-rsy6YYBQ1KN40b_ILG5tKSV9u6qK39ckqrayar2eWxIBH_bgTLmp0BmyeIUZ8JGeibzowM2mnCqXuYtmWi76zuX"
+
+
+
+
+
+//Search Artist's Album in Spotify API call
+// app.get('/spotifyAlbum', (request, response) => {
+
+//     console.log(":::: REQUEST QUERY ====> " + request.query.artistId);
+
+//     var id = request.query.artistId;
+
+//     var SPOTIFY_API_CALL = new SpotifyWebApi({
+//         clientId: '657a16b519154096bd1b8e53e8659b8e',
+//         clientSecret: '1dd2a6650aa145cc91ee28251a535a90'
+//     });
+
+//     SPOTIFY_API_CALL.clientCredentialsGrant()
+//     .then(
+//             function(data)
+//             {
+//                 console.log("Access Token : " + data.body['access_token']);
+
+//                 SPOTIFY_API_CALL.setAccessToken(data.body['access_token']);
+
+//                 SPOTIFY_API_CALL.getArtistAlbums(id,limit=3)
+//                         .then(
+//                             function(data)
+//                             {
+//                                 console.log(":: ARTIST'S ALBUM :: " + data.body);
+
+//                                 response.header("Access-Control-Allow-Origin", "*");
+//                                 response.send(JSON.stringify(data.body));
+//                                 console.log("Spotify Artist's Album Response Sent!");
+//                             },
+
+//                             function(error)
+//                             {
+//                                 console.log("Error Message when fetching Spotify API : " + error);
+//                             }
+//                         );
+//                 },
+
+//                 function(error)
+//                 {
+//                     console.log("Error Message when fetching Spotify API : " + error);
+//                 }
+//                 );
+// });
+
