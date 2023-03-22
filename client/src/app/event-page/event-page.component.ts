@@ -69,6 +69,10 @@ export class EventPageComponent implements OnInit {
   // Tab 2
   public artistContentList : any = [];
 
+  public artistAlbum1 : string = '';
+  public artistAlbum2 : string = '';
+  public artistAlbum3 : string = '';
+
   //Tab 3
   public venueDetailContent = {
     Address: '',
@@ -134,7 +138,7 @@ export class EventPageComponent implements OnInit {
       this.openHoursText = this.venueDetailContent.OpenHours;
     }
     else{
-      this.openHoursText = this.venueDetailContent.OpenHours.slice(0, 70);
+      this.openHoursText = this.venueDetailContent.OpenHours.slice(0, 100);
     }
     console.log("openHoursText : " + this.openHoursText);
   }
@@ -147,7 +151,7 @@ export class EventPageComponent implements OnInit {
       this.generalRulesText = this.venueDetailContent.GeneralRule;
     }
     else{
-      this.generalRulesText = this.venueDetailContent.GeneralRule.slice(0, 70);
+      this.generalRulesText = this.venueDetailContent.GeneralRule.slice(0, 100);
     }
     console.log("generalRulesText : " + this.generalRulesText);
   }
@@ -160,7 +164,7 @@ export class EventPageComponent implements OnInit {
       this.childRuleText = this.venueDetailContent.ChildRule;
     }
     else{
-      this.childRuleText = this.venueDetailContent.ChildRule.slice(0, 70);
+      this.childRuleText = this.venueDetailContent.ChildRule.slice(0, 100);
     }
     console.log("childRuleText : " + this.childRuleText);
   }
@@ -381,7 +385,7 @@ export class EventPageComponent implements OnInit {
                       this.openHoursText = this.venueDetailContent.OpenHours;
                     }
                     else{
-                      this.openHoursText = this.venueDetailContent.OpenHours.slice(0, 70);
+                      this.openHoursText = this.venueDetailContent.OpenHours.slice(0, 100);
                     }
                   }
                 }
@@ -394,7 +398,7 @@ export class EventPageComponent implements OnInit {
                       this.generalRulesText = this.venueDetailContent.GeneralRule;
                     }
                     else{
-                      this.generalRulesText = this.venueDetailContent.GeneralRule.slice(0, 70);
+                      this.generalRulesText = this.venueDetailContent.GeneralRule.slice(0, 100);
                     }
                   }
 
@@ -405,7 +409,7 @@ export class EventPageComponent implements OnInit {
                       this.childRuleText = this.venueDetailContent.ChildRule;
                     }
                     else{
-                      this.childRuleText = this.venueDetailContent.ChildRule.slice(0, 70);
+                      this.childRuleText = this.venueDetailContent.ChildRule.slice(0, 100);
                     }
                   }
                 }
@@ -556,7 +560,6 @@ export class EventPageComponent implements OnInit {
               console.log("this.spotifyArtistList: ", this.spotifyArtistList);
 
               if(this.spotifyArtistList.length == this.eventDetailContent.ArtistTeamList.length){
-                console.log("All artists fetched by SPotify API ::: ", this.spotifyArtistList);
                 this.getArtistTeamData(Category);
               }
             });
@@ -573,7 +576,7 @@ export class EventPageComponent implements OnInit {
   }
 
   
-  public getArtistTeamData(category : String)
+  public async getArtistTeamData(category : String)
   {
       console.log("::: Inside getArtistTeamData :::");
       this.artistContentList = [];
@@ -584,15 +587,32 @@ export class EventPageComponent implements OnInit {
           for(var j = 0; j < this.spotifyArtistList[i].artists.items.length; ++j){
             var artistName = this.spotifyArtistList[i].artists.items[j].name;
             for(var k = 0; k < this.eventDetailContent.ArtistTeamList.length; ++k){
-              if(artistName == this.eventDetailContent.ArtistTeamList[k]){  
-                console.log("Artist MAtch found!!!");
+              if(artistName.toUpperCase() == this.eventDetailContent.ArtistTeamList[k].toUpperCase()){  
+                console.log("Artist MAtch found!!! artistName : " + artistName + " ,  this.eventDetailContent.ArtistTeamList[k] : " + this.eventDetailContent.ArtistTeamList[k]);
                 this.eventDetailContent.ArtistTeamList.splice(k, 1);
+                var artistId = this.spotifyArtistList[i].artists.items[j].id;
+
+                console.log("Artist NAme : " + artistName + " , ARTIST ID : " + artistId);
+
+                // this.artistAlbumFetch(artistId);
+
+                var FINAL_SPOTIFY_SERVER_API_CALL = this.PARENT_SERVER_URL + "/spotifyAlbum?artistId=" + artistId;
+                const response = await fetch(FINAL_SPOTIFY_SERVER_API_CALL);
+                const json = await response.json();
+                
+                this.artistAlbum1 = json.items[0].images[0].url;
+                this.artistAlbum2 = json.items[1].images[0].url;
+                this.artistAlbum3 = json.items[2].images[0].url;
+
                 eachArtistContent.push({
                                         Name:artistName,
                                         Followers: this.spotifyArtistList[i].artists.items[j].followers.total,
                                         Popularity: this.spotifyArtistList[i].artists.items[j].popularity,
                                         SpotifyLink: this.spotifyArtistList[i].artists.items[j].external_urls.spotify,
                                         ArtistImage: this.spotifyArtistList[i].artists.items[j].images[0].url,
+                                        AlbumImage1 : this.artistAlbum1,
+                                        AlbumImage2 : this.artistAlbum2,
+                                        AlbumImage3 : this.artistAlbum3,
                                         NoDetails:false
                                   });
                 break;
