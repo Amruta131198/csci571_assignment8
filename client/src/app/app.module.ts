@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
+// import { AppRoutingModule } from './app-routing.module';
+import { RouterModule,Routes  } from '@angular/router';
 import { AppComponent } from './app.component';
 import { EventPageComponent } from './event-page/event-page.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,15 +14,24 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { FavouritePageComponent } from './favourite-page/favourite-page.component';
+
+const appRoutes: Routes = [
+  { path: 'search', component: EventPageComponent },
+  
+  { path: 'favourite', component: FavouritePageComponent },
+  {  path: '**', redirectTo: 'search', pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventPageComponent
+    EventPageComponent,
+    FavouritePageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -30,6 +40,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     MatFormFieldModule,
     MatInputModule, 
     MatSelectModule,
+    RouterModule.forRoot(
+      appRoutes,
+      //{ enableTracing: true } // <-- debugging purposes only
+    ),
     MatTabsModule,
     GoogleMapsModule,
     NgCircleProgressModule.forRoot({

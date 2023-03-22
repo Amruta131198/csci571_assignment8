@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes} from '@angular/router'
+import { EventPageComponent } from './event-page/event-page.component'
+import { FavouritePageComponent } from './favourite-page/favourite-page.component'
 
-const routes: Routes = [];
+// generate routes
+const routes:Routes = [
+  { path:'search', component: EventPageComponent },
+  { path:'favourite', component: FavouritePageComponent }
+]
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes)
