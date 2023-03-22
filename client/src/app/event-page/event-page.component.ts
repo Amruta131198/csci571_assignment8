@@ -41,6 +41,7 @@ export class EventPageComponent implements OnInit {
   public seatMapURL:string = 'seatMapURL' ; //seat map url
   public spotifyArtistList:any = [];
   public spotifyArtist:any = {};
+  public addToFavFlag : boolean = false;
 
   public formInputValue : any = {
     keyword : '',
@@ -101,6 +102,13 @@ export class EventPageComponent implements OnInit {
       startWith(''),
       map(value => this.serverCallForAutoComplete(value))
     );
+
+    // Object.keys(localStorage).forEach((a) => {
+    //   JSON.parse(localStorage.getItem(a)!).map((a: any) => {
+    //     this?.storageReservation.push(a);
+    //     this?.bookedBusiness.push(a?.name);
+    //   });
+    // });
 
   }
 
@@ -167,6 +175,12 @@ export class EventPageComponent implements OnInit {
       this.childRuleText = this.venueDetailContent.ChildRule.slice(0, 100);
     }
     console.log("childRuleText : " + this.childRuleText);
+  }
+
+  public addFavoriteFunction()
+  {
+    this.addToFavFlag = ! this.addToFavFlag;
+    console.log("addFavoriteFunction : flag = " + this.addToFavFlag);
   }
 
   public fetchLocation(key : any)
@@ -632,7 +646,7 @@ export class EventPageComponent implements OnInit {
         }
       }
       this.artistContentList = eachArtistContent;
-      console.log("deal artist data: ", this.artistContentList);
+      console.log("deal artist data: artistContentList : ", this.artistContentList);
   }
 
 }

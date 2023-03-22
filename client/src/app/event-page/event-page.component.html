@@ -9,7 +9,6 @@
               <li type="button" class="nav-item col-xs-3"><button class="btn" id="searchFav">Favorites</button></li>
             </ul>
     </nav> -->
-    
     <section class="container mt-5 w-50 text-light p-5">
       <form class="row g-3 p-3" method="GET" (ngSubmit)="onSubmit(eventForm)" [formGroup] = "eventForm" ngNativeValidate>
         <h2 align="center" style="color: white; font-family: 'Times New Roman', Times, serif; font-size: 35px; font-weight: lighter;">Events Search</h2>
@@ -96,7 +95,8 @@
 
       <div class="container card text-white mt-5 mb-5 d-flex justify-content-center w-75 p-0" style="background: rgba(221, 205, 205, 0.284); backdrop-filter: blur(20px); ">
         <div class="m-2"><a (click)="showEventsTable=true; showEventsDetail = false" style="cursor: pointer;"><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_left</i><u style=" font-size:16px; line-height:24px;">Back</u></a></div> <!--<i class="bi bi-arrow-left"></i>-->
-          <div class="text-center mb-2"><strong><h4>{{eventDetailContent.Name}}</h4></strong></div>
+          <div *ngIf="addToFavFlag == false" class="text-center mb-2 "><strong><h4>{{eventDetailContent.Name}}<span class="m-3 p-2 pb-1" style="background-color: #ffffff; border-radius: 50%;"><a href="javascript:;" (click)="addFavoriteFunction()"><i class='far fa-heart' style="color: black;"></i></a></span></h4></strong></div>
+          <div *ngIf="addToFavFlag == true" class="text-center mb-2 "><strong><h4>{{eventDetailContent.Name}}<span class="m-3 p-2 pb-1" style="background-color: #ffffff; border-radius: 50%;"><a href="javascript:;" (click)="addFavoriteFunction()"><i class='fa fa-heart' style='color: red'></i></a></span></h4></strong></div>
         
 
         <mat-tab-group mat-align-tabs="center" color='primary'>
@@ -108,9 +108,9 @@
                     <h5><strong>Date</strong></h5>
                     <p>{{eventDetailContent.Time}}</p>
                   </div>
-                  <div class="mb-3" *ngIf="eventDetailContent.ArtistTeam">
+                  <div class="mb-3 text-center" *ngIf="eventDetailContent.ArtistTeam">
                     <h5><strong>Artist/Team</strong></h5>
-                    <div style="width: 300px; white-space: pre-line;">{{eventDetailContent.ArtistTeam}}</div>
+                    <div class="text-center" style="white-space: pre-line;">{{eventDetailContent.ArtistTeam}}</div>
                   </div>
                   <div class="mb-3" *ngIf="eventDetailContent.Venue">
                     <h5><strong>Venue</strong></h5>
@@ -157,20 +157,20 @@
 
            <!-- Artist/Teams -->
            <mat-tab [label]="'Artist/Teams'" [aria-label]="'secondary'">
-            <!-- <div *ngIf="artistContentList?.length == 0">
-              <div class="alert alert-warning">
-                No records.
+            <div *ngIf="this.eventDetailContent.ArtistTeamList.length != 0">
+              <div class="container mt-5 mb-5 d-flex justify-content-center w-50 card p-0" style="color: rgb(200, 0, 0); border-radius: 60px; font-weight: 600; text-align: center;">
+                No music related artist details to show
               </div>
-            </div> -->
+            </div>
             <div *ngIf="artistContentList?.length > 0">
 
               <div id="carouselExampleIndicators" class="row carousel slide pr-5 pl-0" data-bs-ride="carousel">
-                <button class="col carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <button class="col carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" *ngIf="artistContentList?.length > 1">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
                 <div class="col carousel-inner pl-5 pr-5 mt-0">
-                  <div class="carousel-item p-5" *ngFor="let result of artistContentList; let i = index" [ngClass]="{'active': i === 1}">
+                  <div class="carousel-item p-5" *ngFor="let result of artistContentList; let i = index" [ngClass]="{'active': i === 0}">
                     <div class="row text-center mt-0" id="artistDetailRow1" >
                       <div class="col" id="artistDetailCol1">
                         <img src={{result.ArtistImage}} title={{result.Name}} style="height: 150px; width: 150px; border-radius: 50%;"/>
@@ -205,7 +205,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="col carousel-control-next  pl-5 pr-0" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <button class="col carousel-control-next  pl-5 pr-0" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next"  *ngIf="artistContentList?.length > 1">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>

@@ -15,6 +15,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { FavouritePageComponent } from './favourite-page/favourite-page.component';
+import {MatIconModule} from '@angular/material/icon';
 
 const appRoutes: Routes = [
   { path: 'search', component: EventPageComponent },
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule, 
+    MatIconModule,
     MatSelectModule,
     RouterModule.forRoot(
       appRoutes,
