@@ -41,7 +41,6 @@ export class EventPageComponent implements OnInit {
   public seatMapURL:string = 'seatMapURL' ; //seat map url
   public spotifyArtistList:any = [];
   public spotifyArtist:any = {};
-  public addToFavFlag : boolean = false;
 
   public formInputValue : any = {
     keyword : '',
@@ -96,6 +95,9 @@ export class EventPageComponent implements OnInit {
   mapOptions : google.maps.MapOptions = {};
   marker : any = {};
 
+  public favoriteLocalStorage : any = [];
+  public favoriteEvents : any = [];
+
   ngOnInit() {
 
     this.filteredOptions = this.eventForm.get('keyword')?.valueChanges.pipe(
@@ -103,12 +105,12 @@ export class EventPageComponent implements OnInit {
       map(value => this.serverCallForAutoComplete(value))
     );
 
-    // Object.keys(localStorage).forEach((a) => {
-    //   JSON.parse(localStorage.getItem(a)!).map((a: any) => {
-    //     this?.storageReservation.push(a);
-    //     this?.bookedBusiness.push(a?.name);
-    //   });
-    // });
+    Object.keys(localStorage).forEach((a) => {
+      JSON.parse(localStorage.getItem(a)!).map((a: any) => {
+        this?.favoriteLocalStorage.push(a);
+        this?.favoriteEvents.push(a?.name);
+      });
+    });
 
   }
 
@@ -179,8 +181,35 @@ export class EventPageComponent implements OnInit {
 
   public addFavoriteFunction()
   {
-    this.addToFavFlag = ! this.addToFavFlag;
-    console.log("addFavoriteFunction : flag = " + this.addToFavFlag);
+    let eventDetailForFav ={
+      date : this.eventDetailContent.Time,
+      event : this.eventDetailContent.Name,
+      category : this.eventDetailContent.Category,
+      venue: this.eventDetailContent.Venue
+    }
+
+    localStorage.setItem((eventDetailForFav.event + eventDetailForFav.date).toString(),JSON.stringify(eventDetailForFav));
+    alert("Event Added to Favorites!");
+    console.log("Local Storage after Addition : " + localStorage.length);
+
+  }
+
+  public removeFavoriteFunction(eventName : any, eventDate : any)
+  {
+    console.log("Event details to be removed from Favorites list : Name : " + eventName + " , Time : " + eventDate);
+
+    let details = localStorage.getItem((eventName+eventDate).toString());
+    console.log("Details to be deleted : " + details);
+
+    localStorage.removeItem((eventName+eventDate).toString());
+    alert("Event Removed from Favorites!");
+    console.log("Local Storage after Deletion : " + localStorage.length);
+
+  }
+
+  getLocalStorageItem ( item : any ) 
+  { 
+    return (localStorage.getItem(item) === null);
   }
 
   public fetchLocation(key : any)
