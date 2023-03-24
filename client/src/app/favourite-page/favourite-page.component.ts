@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './favourite-page.component.html',
   styleUrls: ['./favourite-page.component.css']
 })
-export class FavouritePageComponent {
+export class FavouritePageComponent implements OnInit{
 
   constructor() {}
 
@@ -40,7 +40,6 @@ export class FavouritePageComponent {
     });
 
     alert("Removed from Favorites!");
-    // window.location.reload();
   }
 
 }
