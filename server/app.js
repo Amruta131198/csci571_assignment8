@@ -17,6 +17,8 @@ var clientSecret = '1dd2a6650aa145cc91ee28251a535a90';
 app.set('trust proxy', true);
 const PORT = process.env.PORT || 8080;
 
+//https://assignment8-events-website.wl.r.appspot.com/autocomplete?keyword=Ed
+
 app.get('/events', (request, response) => {
 
     console.log(":::: REQUEST QUERY ====> " + request.query)
