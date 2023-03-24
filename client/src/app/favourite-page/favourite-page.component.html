@@ -1,1 +1,40 @@
-<p>favourite-page works!</p>
+<section *ngIf="dataFromLocalStorage.length">
+  <div class="container mt-4 justify-content-center w-75">
+    <div class="container d-flex justify-content-center">
+      <h5 style="color: #76ffedd2;">List of your favorite events</h5>
+    </div>
+    <div class="container mt-4 card table-responsive p-0">
+      <table class="table table-sm table-hover text-center font-size-small">
+        <thead>
+            <tr>
+                <th scope="col" >#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Event</th>
+                <th scope="col">Category</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Favorite</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let element of dataFromLocalStorage; let i=index">
+            <td><strong>{{i+1}}</strong></td>
+            <td>{{element.date}}</td>
+            <td>{{element.event}}</td>
+            <td>{{element.category}}</td>
+            <td>{{element.venue}}</td>
+            <td (click)="deleteFromFavorites(element.event, element.date)"><i class="bi bi-trash" style=" cursor: pointer;"></i></td> 
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</section>
+
+<section *ngIf="!dataFromLocalStorage.length">
+    <div class="d-flex justify-content-center mt-4 m-0 p-0">
+        <div class="container mt-5 mb-5 d-flex justify-content-center w-50 card p-0" style="color: rgb(200, 0, 0); border-radius: 60px; font-weight: 600; text-align: center;">
+            No favorite events to show
+          </div>
+    </div>
+</section>

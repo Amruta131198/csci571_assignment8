@@ -188,7 +188,7 @@ export class EventPageComponent implements OnInit {
       venue: this.eventDetailContent.Venue
     }
 
-    localStorage.setItem((eventDetailForFav.event + eventDetailForFav.date).toString(),JSON.stringify(eventDetailForFav));
+    localStorage.setItem(("CSCI_571_" + eventDetailForFav.event + eventDetailForFav.date), JSON.stringify(eventDetailForFav));
     alert("Event Added to Favorites!");
     console.log("Local Storage after Addition : " + localStorage.length);
 
@@ -198,10 +198,10 @@ export class EventPageComponent implements OnInit {
   {
     console.log("Event details to be removed from Favorites list : Name : " + eventName + " , Time : " + eventDate);
 
-    let details = localStorage.getItem((eventName+eventDate).toString());
+    let details = localStorage.getItem(('CSCI_571_' + eventName+eventDate));
     console.log("Details to be deleted : " + details);
 
-    localStorage.removeItem((eventName+eventDate).toString());
+    localStorage.removeItem(('CSCI_571_' + eventName+eventDate));
     alert("Event Removed from Favorites!");
     console.log("Local Storage after Deletion : " + localStorage.length);
 
@@ -209,7 +209,7 @@ export class EventPageComponent implements OnInit {
 
   getLocalStorageItem ( item : any ) 
   { 
-    return (localStorage.getItem(item) === null);
+    return (localStorage.getItem(("CSCI_571_" + item).toString()) === null);
   }
 
   public fetchLocation(key : any)
