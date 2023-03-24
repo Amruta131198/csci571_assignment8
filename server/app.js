@@ -4,20 +4,18 @@ var qs = require('qs');
 var geohash = require('ngeohash');
 const axios = require('axios');
 const util = require('util');
-var spotifyWebApi = require('spotify-web-api-node');
+const cors = require('cors');
 const res = require("express/lib/response");
 const SpotifyWebApi = require("spotify-web-api-node");
 var data = qs.stringify({
     'grant_type': 'client_credentials' 
   });
 
-// Client ID : 657a16b519154096bd1b8e53e8659b8e
-// Client Secret : 1dd2a6650aa145cc91ee28251a535a90
-
 var clientId = '657a16b519154096bd1b8e53e8659b8e';
 var clientSecret = '1dd2a6650aa145cc91ee28251a535a90';
 
-// //&keyword=USC&segmentId=KZFzniwnSyZfZ7v7nE&radius=10&unit=miles&geoPoint=9q5cs
+app.set('trust proxy', true);
+const PORT = process.env.PORT || 8080;
 
 app.get('/events', (request, response) => {
 
@@ -290,8 +288,8 @@ app.get('/venueDetail', (request, response) => {
 })
 
 
-app.listen(3000, (req, res) => {
-    console.log("Express API is running on Port 3000!");
+app.listen(PORT, (req, res) => {
+    console.log("Express API is running on Port "+ PORT +"!");
 })
 
 
