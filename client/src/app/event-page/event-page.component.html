@@ -95,7 +95,7 @@
 
       <div class="container card text-white mt-5 mb-5 d-flex justify-content-center w-75 p-0" style="background: rgba(221, 205, 205, 0.284); backdrop-filter: blur(20px); ">
         <div class="m-2"><a (click)="showEventsTable=true; showEventsDetail = false" style="cursor: pointer;"><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_left</i><u style=" font-size:16px; line-height:24px;">Back</u></a></div> <!--<i class="bi bi-arrow-left"></i>-->
-          <div *ngIf="getLocalStorageItem((eventDetailContent.Name + eventDetailContent.Time).toString())" class="text-center mb-2 "><strong><h4>{{eventDetailContent.Name}}<span class="m-3 p-2 pb-1" style="background-color: #ffffff; border-radius: 50%;"><a href="javascript:;" (click)="addFavoriteFunction()"><i class='far fa-heart' style="color: black;"></i></a></span></h4></strong></div>
+          <div *ngIf="getLocalStorageItem((eventDetailContent.Name + eventDetailContent.Time).toString())" class="text-center mb-2 "><strong><h4>{{eventDetailContent.Name}}<span class="m-3 p-2 pb-1" style="background-color: #ffffff; border-radius: 50%;"><a href="javascript:;" (click)="addFavoriteFunction()"><i class="fa fa-heart-o" style="color: black;"></i></a></span></h4></strong></div>
           <div *ngIf="!getLocalStorageItem((eventDetailContent.Name + eventDetailContent.Time).toString())" class="text-center mb-2 "><strong><h4>{{eventDetailContent.Name}}<span class="m-3 p-2 pb-1" style="background-color: #ffffff; border-radius: 50%;"><a href="javascript:;" (click)="removeFavoriteFunction(eventDetailContent.Name, eventDetailContent.Time)"><i class='fa fa-heart' style='color: red'></i></a></span></h4></strong></div>
         
 
