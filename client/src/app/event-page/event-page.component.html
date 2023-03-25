@@ -9,55 +9,57 @@
               <li type="button" class="nav-item col-xs-3"><button class="btn" id="searchFav">Favorites</button></li>
             </ul>
     </nav> -->
-    <section class="container mt-5 w-50 text-light p-5">
-      <form class="row g-3 p-3" method="GET" (ngSubmit)="onSubmit(eventForm)" [formGroup] = "eventForm" ngNativeValidate>
-        <h2 align="center" style="color: white; font-family: 'Times New Roman', Times, serif; font-size: 35px; font-weight: lighter;">Events Search</h2>
-        <hr style="opacity: 0.95; color: #ffffff;" width="80%">  
+    <section>
+      <div class="container mt-5 d-flex justify-content-center text-light" id="main_container">
+            <form class="row g-3 p-3" method="GET" (ngSubmit)="onSubmit(eventForm)" [formGroup] = "eventForm" ngNativeValidate>
+              <h2 align="center" style="color: white; font-family: 'Times New Roman', Times, serif; font-size: 35px; font-weight: lighter;">Events Search</h2>
+              <hr style="opacity: 0.95; color: #ffffff;" width="80%">  
 
-        <div class="col-12">
-              <label class="form-label" id="basic">Keyword<span style="color: red;">*</span></label>
-              <input matInput [matAutocomplete]="auto" type="text" id="keyword" [(ngModel)]="formInputValue.keyword" formControlName="keyword" class="form-control" required >
-              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
-                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option" style="color: white;">
-                    {{option}}
-                  </mat-option>
-              </mat-autocomplete>
-        </div>
+              <div class="col-12">
+                    <label class="form-label" id="basic">Keyword<span style="color: red;">*</span></label>
+                    <input matInput [matAutocomplete]="auto" type="text" id="keyword" [(ngModel)]="formInputValue.keyword" formControlName="keyword" class="form-control" required >
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" style="color: white;">
+                          {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+              </div>
 
-        <div class="col-md-6">
-          <label class="form-label" id="basic">Distance</label>
-          <input type="number" class="form-control" [(ngModel)]="defaultDistance" formControlName="distance">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" id="basic">Category<span style="color: red;">*</span></label>
-          <select id="getCategory" class="form-select"  formControlName="category" [(ngModel)]="formInputValue.category">
-            <option selected style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Default">Default</option>
-            <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Music">Music</option>
-            <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Sports">Sports</option>
-            <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="ArtsTheatre">Arts & Theatre</option>
-            <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Film">Film</option>
-            <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Miscellaneous">Miscellaneous</option>
-          </select>
-        </div>
-          
-        <div class="col-12">
-          <label class="form-label" id="basic">Location<span style="color: red;">*</span></label>
-          <input type="text" class="form-control" formControlName = "location" required [(ngModel)]="formInputValue.location" >
-        </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input class="form-check-input" formControlName="locationCheckbox"  type="checkbox" id="gridCheck" [checked] = "autoDetect" (change) = "fetchLocation(this)">
-              <label class="form-check-label" for="gridCheck" id="basic">
-                Auto-detect your location
-              </label>
-            </div>
+              <div class="col-md-6">
+                <label class="form-label" id="basic">Distance</label>
+                <input type="number" class="form-control" [(ngModel)]="defaultDistance" formControlName="distance">
+              </div>
+              <div class="col-md-5" id="category_div">
+                <label class="form-label" id="basic">Category<span style="color: red;">*</span></label>
+                <select id="getCategory" class="form-select w-75"  formControlName="category" [(ngModel)]="formInputValue.category">
+                  <option selected style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Default">Default</option>
+                  <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Music">Music</option>
+                  <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Sports">Sports</option>
+                  <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="ArtsTheatre">Arts & Theatre</option>
+                  <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Film">Film</option>
+                  <option style="background-color:rgba(0, 0, 0, 0.098); color: white;" value="Miscellaneous">Miscellaneous</option>
+                </select>
+              </div>
+                
+              <div class="col-12">
+                <label class="form-label" id="basic">Location<span style="color: red;">*</span></label>
+                <input type="text" class="form-control" formControlName = "location" required [(ngModel)]="formInputValue.location" >
+              </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" formControlName="locationCheckbox"  type="checkbox" id="gridCheck" [checked] = "autoDetect" (change) = "fetchLocation(this)">
+                    <label class="form-check-label" for="gridCheck" id="basic">
+                      Auto-detect your location
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-md-12 text-center mb-4">
+                  <input id="formSearchButton" type="submit" class="btn m-2" value="SUBMIT">
+                  <button id="formClearButton" type="button" class="btn m-2" (click)="clearForm()">CLEAR</button>
+              </div>
+              </form>
           </div>
-
-          <div class="col-md-12 text-center mb-4">
-            <input id="formSearchButton" type="submit" class="btn m-2" value="SUBMIT">
-            <button id="formClearButton" type="button" class="btn m-2" (click)="clearForm()">CLEAR</button>
-         </div>
-        </form>
      </section>
 
      <section *ngIf="noRecords">
@@ -95,8 +97,8 @@
 
       <div class="container card text-white mt-5 mb-5 d-flex justify-content-center w-75 p-0" style="background: rgba(221, 205, 205, 0.284); backdrop-filter: blur(20px); ">
         <div class="m-2"><a (click)="showEventsTable=true; showEventsDetail = false" style="cursor: pointer;"><i class="material-icons" style="font-size:20px;  display: inline-flex; vertical-align: middle;">keyboard_arrow_left</i><u style=" font-size:16px; line-height:24px;">Back</u></a></div> <!--<i class="bi bi-arrow-left"></i>-->
-          <div *ngIf="getLocalStorageItem((eventDetailContent.Name + eventDetailContent.Time).toString())" class="text-center mb-2 "><strong><h4>{{eventDetailContent.Name}}<span class="m-3 p-2 pb-1" style="background-color: #ffffff; border-radius: 50%;"><a href="javascript:;" (click)="addFavoriteFunction()"><i class="far fa-heart" style="color: black;"></i></a></span></h4></strong></div>
-          <div *ngIf="!getLocalStorageItem((eventDetailContent.Name + eventDetailContent.Time).toString())" class="text-center mb-2 "><strong><h4>{{eventDetailContent.Name}}<span class="m-3 p-2 pb-1" style="background-color: #ffffff; border-radius: 50%;"><a href="javascript:;" (click)="removeFavoriteFunction(eventDetailContent.Name, eventDetailContent.Time)"><i class='fa fa-heart' style='color: red'></i></a></span></h4></strong></div>
+          <div *ngIf="getLocalStorageItem((eventDetailContent.Name + eventDetailContent.Time).toString())" class="text-center mb-2 "><strong><h4><span class="p-2">{{eventDetailContent.Name}}</span><a href="javascript:;" (click)="addFavoriteFunction()"><img src="../../assets/unfav.png" style="width: 40px; height: 40px;" /></a></h4></strong></div>
+          <div *ngIf="!getLocalStorageItem((eventDetailContent.Name + eventDetailContent.Time).toString())" class="text-center mb-2 "><strong><h4><span class="p-2">{{eventDetailContent.Name}}</span><a href="javascript:;" (click)="removeFavoriteFunction(eventDetailContent.Name, eventDetailContent.Time)"><img src="../../assets/fav.png" style="width: 40px; height: 40px;" /></a></h4></strong></div>
         
 
         <mat-tab-group mat-align-tabs="center" color='primary'>
@@ -147,10 +149,12 @@
                 </div>
             </div>
             <div class="container text-center d-flex justify-content-center mt-3" id="eventDetailRow2" >
-                <div class="d-flex flex-row gap-2 mb-4">
-                  <label class="mt-1" style="font-size: 13px;">Share on:</label>
-                  <a href="{{TWITTER_API_CALL}}" target="_blank"><i class="bi bi-twitter" style="color: #1DA1F2;"></i></a>
-                  <a href="{{FACEBOOK_API_CALL}}" target="_blank"><i class='fab fa-facebook-square' style='color:#4267B2'></i></a>
+                <div class="container text-center flex flex-row gap-2 mb-4">
+                  <label class="mt-1 p-1" style="font-size: 13px;">Share on:</label>
+                  <a class="p-1" href="{{TWITTER_API_CALL}}" target="_blank"><img src="../../assets/twitter.svg" style="width: 24px; height: 24px;" /></a>
+                    <!-- <i class="bi bi-twitter" style="color: #1DA1F2; font-size: 24px;"></i></a> -->
+                  <a class="p-1" href="{{FACEBOOK_API_CALL}}" target="_blank"><img src="../../assets/fb.svg" style="width: 24px; height: 24px;" /></a>
+                  <!-- <i class='fab fa-facebook-square' style='color:#4267B2; font-size: 24px;'></i></a> -->
                 </div>
             </div>
           </mat-tab>

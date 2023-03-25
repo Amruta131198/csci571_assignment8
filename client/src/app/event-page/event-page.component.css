@@ -124,6 +124,7 @@ h5{
     height: 100vh;
     background-color: var(--bs-backdrop-bg);
 }
+
 .fade {
     transition: opacity .15s linear;
 }
@@ -131,3 +132,18 @@ h5{
 .modal-backdrop.show {
     opacity: var(--bs-backdrop-opacity);
 }
+
+/* @media only screen and (min-width: 768px) {
+    .main_container
+    {
+        width: 50% !important;
+    }
+} */
+
+
+@media (min-width: 768px) { 
+    form
+    {
+        width: 40em !important;
+    }
+ }
