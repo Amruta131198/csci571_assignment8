@@ -3,8 +3,8 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {far} from '@fortawesome/free-regular-svg-icons';
+// import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+// import {far} from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-event-page',
@@ -14,8 +14,8 @@ import {far} from '@fortawesome/free-regular-svg-icons';
 })
 export class EventPageComponent implements OnInit {
 
-  constructor(private http : HttpClient, library: FaIconLibrary) { 
-    library.addIconPacks(far);
+  constructor(private http : HttpClient) { 
+    // library.addIconPacks(far);
   }
 
   defaultDistance : number = 10;

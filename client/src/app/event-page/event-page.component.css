@@ -101,10 +101,13 @@ h5{
     font-size: 12px;
 }
 
-.truncate {
+#truncate {
     display: block;
-    max-height: 3.6em;
-    line-height: 1.8em;
+    max-height: 2.5em;
+    line-height: 1.2em;
+    word-spacing: 0.01em;
+    /* max-height: 3.6em; */
+    /* line-height: 1.8em; */
   }
 
 .modal-dialog
@@ -125,6 +128,16 @@ h5{
     background-color: var(--bs-backdrop-bg);
 }
 
+mat-tab-header {
+    background-color: #35e5ced2;
+}
+
+/* ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+    min-width: 0!important;
+    padding: 3px!important;
+    margin: 3px!important;
+   } */
+
 .fade {
     transition: opacity .15s linear;
 }
@@ -132,6 +145,7 @@ h5{
 .modal-backdrop.show {
     opacity: var(--bs-backdrop-opacity);
 }
+
 
 /* @media only screen and (min-width: 768px) {
     .main_container

@@ -16,7 +16,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { FavouritePageComponent } from './favourite-page/favourite-page.component';
 import {MatIconModule} from '@angular/material/icon';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 const appRoutes: Routes = [
   { path: 'search', component: EventPageComponent },
   
@@ -41,7 +41,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule, 
     MatIconModule,
-    FontAwesomeModule,
+    // FontAwesomeModule,
     MatSelectModule,
     RouterModule.forRoot(
       appRoutes,
