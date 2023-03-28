@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { AppRoutingModule } from './app-routing.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { RouterModule,Routes  } from '@angular/router';
 import { AppComponent } from './app.component';
 import { EventPageComponent } from './event-page/event-page.component';
@@ -69,7 +70,7 @@ const appRoutes: Routes = [
       "outerStrokeLinecap" : "square",
       "showZeroOuterStroke": false})
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
