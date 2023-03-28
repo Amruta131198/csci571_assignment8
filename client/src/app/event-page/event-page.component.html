@@ -105,7 +105,7 @@
           <div *ngIf="!getLocalStorageItem((eventDetailContent.Name + eventDetailContent.Time).toString())" class="text-center mb-2 p-1"><strong><h4 style="font-size: 18px;"><span class="p-2">{{eventDetailContent.Name}}</span><a href="javascript:;" (click)="removeFavoriteFunction(eventDetailContent.Name, eventDetailContent.Time)"><img src="../../assets/favourite.jpeg" style="width: 40px; height: 40px;" /></a></h4></strong></div>
         
 
-        <mat-tab-group mat-align-tabs="center" color='primary'>
+        <mat-tab-group mat-align-tabs="center" color='primary' class="m-0 p-0">
           <!-- Event details -->
           <mat-tab [label]="'Events'" [aria-label]="'secondary'" class="mat-tab-header">
             <div class="row text-center mt-4" id="eventDetailRow1" >
@@ -163,8 +163,8 @@
 
            <!-- Artist/Teams -->
            <mat-tab [label]="'Artist/Teams'" [aria-label]="'secondary'">
-            <div *ngIf="this.eventDetailContent.ArtistTeamList.length != 0">
-              <div class="container mt-5 mb-5 d-flex justify-content-center w-50 card p-0" style="color: rgb(200, 0, 0); border-radius: 60px; font-weight: 600; text-align: center;">
+            <div *ngIf="this.eventDetailContent.ArtistTeamList.length != 0 || this.eventDetailContent.ArtistTeam == ''">
+              <div class="container mt-5 mb-5 d-flex justify-content-center w-50 card p-0" style="color: rgb(200, 0, 0); border-radius: 60px; font-weight: 600; text-align: center; font-size: 12px;">
                 No music related artist details to show
               </div>
             </div>
@@ -178,25 +178,25 @@
                 <div class="col carousel-inner pl-5 pr-5 mt-0">
                   <div class="carousel-item p-5" *ngFor="let result of artistContentList; let i = index" [ngClass]="{'active': i === 0}">
                     <div class="row text-center mt-0" id="artistDetailRow1" >
-                      <div class="col" id="artistDetailCol1">
+                      <div class="col" id="artistDetailCol1" style="flex: none;">
                         <img src={{result.ArtistImage}} title={{result.Name}} style="height: 150px; width: 150px; border-radius: 50%;"/>
-                        <h4 class="mt-2" style="color: #35e5ced2;">{{result.Name}}</h4>
+                        <h4 class="mt-2" style="color: #35e5ced2; flex: none;">{{result.Name}}</h4>
                       </div>
                       <div class="col text-center" id="artistDetailCol2">
-                        <h5 class="mt-2" style="color: #35e5ced2;">Popularity</h5>
+                        <h5 class="mt-2" style="color: #35e5ced2; flex: none;">Popularity</h5>
                         <circle-progress [percent]="result.Popularity" [radius]="20" [title]="result.Popularity"></circle-progress>
                       </div>
                       <div class="col text-center" id="artistDetailCol3">
-                        <h5 class="mt-2" style="color: #35e5ced2;">Followers</h5>
+                        <h5 class="mt-2" style="color: #35e5ced2; flex: none;">Followers</h5>
                         <p style="font-weight: bold;">{{result.Followers | number}}</p>
                       </div>
                       <div class="col text-center" id="artistDetailCol4">
-                        <h5 class="mt-2" style="color: #35e5ced2;">Spotify Link</h5>
+                        <h5 class="mt-2" style="color: #35e5ced2; flex: none;">Spotify Link</h5>
                         <a href="{{result.SpotifyLink}}" target="_blank"><img src="../../assets/spotify.svg" style="width: 40px; height: 40px;" /></a>
                       </div>
                     </div>
                     <div class="row text-center mt-0" id="artistDetailRow2" >
-                      <h6 class="mt-3" align="left" style="color: #35e5ced2;">Album featuring {{result.Name}}</h6>
+                      <h6 class="mt-3 p-3" align="left" style="color: #35e5ced2;">Album featuring {{result.Name}}</h6>
                         <div class="row">
                           <div class="col">
                             <img class="p-1" src={{result.AlbumImage1}} style="height: 150px; width: 150px;"/>

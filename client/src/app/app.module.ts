@@ -21,8 +21,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 const appRoutes: Routes = [
   { path: 'search', component: EventPageComponent },
   { path: 'favourite', component: FavouritePageComponent },
-  { path: '**', component: EventPageComponent },
-  // {  path: '**', redirectTo: 'search', pathMatch: 'full' },
+  // { path: '**', component: EventPageComponent },
+  {  path: '**', redirectTo: 'search', pathMatch: 'full' },
 ];
 
 @NgModule({
