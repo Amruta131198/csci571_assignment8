@@ -178,9 +178,9 @@
                 <div class="col carousel-inner pl-5 pr-5 mt-0">
                   <div class="carousel-item p-5" *ngFor="let result of artistContentList; let i = index" [ngClass]="{'active': i === 0}">
                     <div class="row text-center mt-0" id="artistDetailRow1" >
-                      <div class="col" id="artistDetailCol1" style="flex: none;">
+                      <div class="col" id="artistDetailCol1">
                         <img src={{result.ArtistImage}} title={{result.Name}} style="height: 150px; width: 150px; border-radius: 50%;"/>
-                        <h4 class="mt-2" style="color: #35e5ced2; flex: none;">{{result.Name}}</h4>
+                        <h4 class="mt-2" style="color: #35e5ced2;">{{result.Name}}</h4>
                       </div>
                       <div class="col text-center" id="artistDetailCol2">
                         <h5 class="mt-2" style="color: #35e5ced2; flex: none;">Popularity</h5>
