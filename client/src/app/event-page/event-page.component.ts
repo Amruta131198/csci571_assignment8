@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core'
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-// import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-// import {far} from '@fortawesome/free-regular-svg-icons';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Observable} from 'rxjs';
+import { debounceTime, distinctUntilChanged, finalize, map, startWith, switchMap, tap  } from 'rxjs/operators';
 
 @Component({
   selector: 'app-event-page',
@@ -28,6 +27,7 @@ export class EventPageComponent implements OnInit {
   // Stores auto-complete content
   public choices : string[] = [];
   filteredOptions: Observable<string[]> | undefined;
+  public isLoading : boolean = true;
 
   public eventForm  = new FormGroup({
       keyword: new FormControl(),
@@ -105,6 +105,8 @@ export class EventPageComponent implements OnInit {
 
   ngOnInit() {
 
+    this.isLoading = true;
+    
     this.filteredOptions = this.eventForm.get('keyword')?.valueChanges.pipe(
       startWith(''),
       map(value => this.serverCallForAutoComplete(value))
@@ -119,11 +121,16 @@ export class EventPageComponent implements OnInit {
 
   }
 
+  load(value : string) {
+    this.isLoading = true;
+    setTimeout(() => { this.isLoading = false; }, 800);
+  }
+
   serverCallForAutoComplete(key : string): string[]
   {
     var SERVER_URL = this.PARENT_SERVER_URL + '/autocomplete?keyword=' + key;
     console.log("Auto-complete backendUrl:", SERVER_URL);
-    
+
     const filterValue = key;//.toLowerCase();
     fetch(SERVER_URL)
       .then(result => result.json())
@@ -134,10 +141,9 @@ export class EventPageComponent implements OnInit {
           autoCompleteResponseList.push(result.attractions[i].name);
         }
         this.choices = autoCompleteResponseList;
-      })
+      });
 
       console.log("Choices: "+this.choices);
-    
       return this.choices;
   }
 

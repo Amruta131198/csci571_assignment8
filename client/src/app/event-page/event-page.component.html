@@ -17,11 +17,15 @@
 
               <div class="col-12">
                     <label class="form-label" id="basic">Keyword<span style="color: red;">*</span></label>
-                    <input matInput [matAutocomplete]="auto" type="text" id="keyword" [(ngModel)]="formInputValue.keyword" formControlName="keyword" class="form-control" required >
+                    <input matInput [matAutocomplete]="auto" type="text" id="keyword" (input)="load(formInputValue.keyword)" [(ngModel)]="formInputValue.keyword" formControlName="keyword" class="form-control" required >
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+                      <ng-container>
+                        <mat-spinner diameter="25" style="margin: 10px; color: black;" *ngIf="isLoading"></mat-spinner>
                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option" style="color: white;">
                           {{option}}
                         </mat-option>
+                      </ng-container>
+
                     </mat-autocomplete>
               </div>
 

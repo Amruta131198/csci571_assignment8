@@ -132,11 +132,9 @@ mat-tab-header {
     background-color: #35e5ced2;
 }
 
-/* ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
-    min-width: 0!important;
-    padding: 3px!important;
-    margin: 3px!important;
-   } */
+mat-spinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #2A79FF!important;
+}
 
 .fade {
     transition: opacity .15s linear;
