@@ -641,14 +641,17 @@ export class EventPageComponent implements OnInit {
           for(var j = 0; j < this.spotifyArtistList[i].artists.items.length; ++j){
             var artistName = this.spotifyArtistList[i].artists.items[j].name;
             for(var k = 0; k < this.eventDetailContent.ArtistTeamList.length; ++k){
+              console.log("Iteration : " + j + " , spotifyArtistList item NAme : " + artistName.toUpperCase() + " , this.eventDetailContent.ArtistTeamList[k] : " + this.eventDetailContent.ArtistTeamList[k].toUpperCase());
               if(artistName.toUpperCase() == this.eventDetailContent.ArtistTeamList[k].toUpperCase()){  
                 console.log("Artist MAtch found!!! artistName : " + artistName + " ,  this.eventDetailContent.ArtistTeamList[k] : " + this.eventDetailContent.ArtistTeamList[k]);
-                this.eventDetailContent.ArtistTeamList.splice(k, 1);
+                
                 var artistId = this.spotifyArtistList[i].artists.items[j].id;
 
                 console.log("Artist NAme : " + artistName + " , ARTIST ID : " + artistId);
 
                 // this.artistAlbumFetch(artistId);
+
+                try{
 
                 var FINAL_SPOTIFY_SERVER_API_CALL = this.PARENT_SERVER_URL + "/spotifyAlbum?artistId=" + artistId;
                 const response = await fetch(FINAL_SPOTIFY_SERVER_API_CALL);
@@ -669,24 +672,43 @@ export class EventPageComponent implements OnInit {
                                         AlbumImage3 : this.artistAlbum3,
                                         NoDetails:false
                                   });
+                this.eventDetailContent.ArtistTeamList.splice(k, 1);
                 break;
+                }
+                catch(err)
+                {
+                  console.log("Error : " + err);
+                  break;
+                }
               }
             }
           }
         } 
       }
 
-      console.log("::: this.eventDetailContent.ArtistTeamList ::: " , this.eventDetailContent.ArtistTeamList, category);
+      console.log("::: this.eventDetailContent.ArtistTeamList ::: " , this.eventDetailContent.ArtistTeamList + "this.eventDetailContent.ArtistTeamList.length : " + this.eventDetailContent.ArtistTeamList.length + " , Category : " + category.indexOf('Music') + category.indexOf('Arts & Theatre'));
       //Console should print length 0 for ArtistTeamList since we deleted all the artists from Music and 'Arts & Theatre' category.
       //If the ArtistTeamList is non sero that means all the artists that do not belong to the above category have been left and their details are not available
-      if(this.eventDetailContent.ArtistTeamList.length != 0 && (category.indexOf('Music') != -1 || category.indexOf('Arts & Theatre') != -1)){
-        for(var m = 0; m < this.eventDetailContent.ArtistTeamList.length; ++m){
+      if(this.eventDetailContent.ArtistTeamList.length != 0){ //&& (category.indexOf('Music') != -1 || category.indexOf('Arts & Theatre') != -1)){
+        for(var m = 0; m < this.eventDetailContent.ArtistTeamList.length; m++){
           eachArtistContent.push({Name: this.eventDetailContent.ArtistTeamList[m],
                                   NoDetails: true});
         }
       }
       this.artistContentList = eachArtistContent;
       console.log("deal artist data: artistContentList : ", this.artistContentList);
+  }
+
+  public getDetailsStatusForArtist(name : string) : boolean
+  {
+    for(var i = 0 ; i < this.artistContentList.length ; i++)
+    {
+      if(name === this.artistContentList[i].Name)
+      {
+        return this.artistContentList[i].NoDetails;
+      }
+    }
+    return true;
   }
 
 }
