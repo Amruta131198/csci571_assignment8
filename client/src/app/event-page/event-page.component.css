@@ -106,6 +106,7 @@ h5{
     max-height: 2.5em;
     line-height: 1.2em;
     word-spacing: 0.01em;
+    overflow: hidden;
     /* max-height: 3.6em; */
     /* line-height: 1.8em; */
   }
@@ -168,6 +169,10 @@ mat-spinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     /* --mat-mdc-tab-header-with-background-foreground-color: #fff; */
 }
 
+.justify-content-around {
+    justify-content: space-around!important;
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     #artistDetailCol2, #artistDetailCol3, #artistDetailCol4 {
@@ -176,22 +181,6 @@ mat-spinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     #showEventsSection {
         width: 100% !important; 
     }
-    /* #eventsResultTable, #showEventsTable {
-        width: 100% !important; 
-    } */
-    /* .mat-mdc-tab.mdc-tab {
-        height: 48px !important;
-        flex-grow: 0 !important;
-    }
-    .mdc-tab {
-        width: 20% !important;
-    }
-    
-    .mat-mdc-tab-group.mat-background-primary, .mat-mdc-tab-nav-bar.mat-background-primary, .mat-mdc-tab-labels {
-        --mat-mdc-tab-header-with-background-background-color: #35e5ced2 !important;
-        --mat-mdc-tab-header-with-background-foreground-color: #fff;
-    } */
-
   }
 
 @media (min-width: 768px) { 

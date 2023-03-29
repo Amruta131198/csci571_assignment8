@@ -26,14 +26,7 @@ export class AppComponent {
       this.favouriteStyle = 'favouriteActiveButton';
     }
   }
-
-  // isSelected = true
-
-  // public backendBusinessList =[]
-  // public backendBusinessInfo ={}
-  // public backendBusinessReview ={}
-
-
+  
   changeSearchBorder(){
     console.log('Search Tab clicked');
     this.searchStyle = 'searchActiveButton';
