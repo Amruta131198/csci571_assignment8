@@ -46,6 +46,7 @@ export class EventPageComponent implements OnInit {
   public seatMapURL:string = 'seatMapURL' ; //seat map url
   public spotifyArtistList:any = [];
   public spotifyArtist:any = {};
+  public categoryForArtistDisplay : string = '';
 
   public formInputValue : any = {
     keyword : '',
@@ -316,9 +317,11 @@ export class EventPageComponent implements OnInit {
 
   }
 
-  public getEventsInfo(id : any)
+  public getEventsInfo(id : any, categoryForEvent : string)
   {
     console.log("FETCHING EVENT DETAILS FOR EVENT ID  ::: " + id);
+
+    this.categoryForArtistDisplay = categoryForEvent;
 
     var SERVER_URL = this.PARENT_SERVER_URL + '/eventDetails?id=' + id;
 
@@ -641,7 +644,7 @@ export class EventPageComponent implements OnInit {
           for(var j = 0; j < this.spotifyArtistList[i].artists.items.length; ++j){
             var artistName = this.spotifyArtistList[i].artists.items[j].name;
             for(var k = 0; k < this.eventDetailContent.ArtistTeamList.length; ++k){
-              console.log("Iteration : " + j + " , spotifyArtistList item NAme : " + artistName.toUpperCase() + " , this.eventDetailContent.ArtistTeamList[k] : " + this.eventDetailContent.ArtistTeamList[k].toUpperCase());
+              // console.log("Iteration : " + j + " , spotifyArtistList item NAme : " + artistName.toUpperCase() + " , this.eventDetailContent.ArtistTeamList[k] : " + this.eventDetailContent.ArtistTeamList[k].toUpperCase());
               if(artistName.toUpperCase() == this.eventDetailContent.ArtistTeamList[k].toUpperCase()){  
                 console.log("Artist MAtch found!!! artistName : " + artistName + " ,  this.eventDetailContent.ArtistTeamList[k] : " + this.eventDetailContent.ArtistTeamList[k]);
                 

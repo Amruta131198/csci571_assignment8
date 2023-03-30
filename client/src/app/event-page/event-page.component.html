@@ -85,7 +85,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let ele of eventsList; " (click)="getEventsInfo(ele.id);" style="cursor: pointer;">
+            <tr *ngFor="let ele of eventsList; " (click)="getEventsInfo(ele.id, ele.classifications[0].segment.name);" style="cursor: pointer;">
               <td scope="row">{{ ele.dates.start.localDate }}<br>{{ ele.dates.start.localTime }}</td>
               <td><img src="{{ele.images[0].url}}" style="width: 100px; height: 100px;"></td>
               <td>{{ele["name"]}}</td>
@@ -163,12 +163,12 @@
 
            <!-- Artist/Teams -->
            <mat-tab [label]="'Artist/Teams'" [aria-label]="'secondary'">
-            <div *ngIf="(this.eventDetailContent.ArtistTeamList.length != 0 || this.eventDetailContent.ArtistTeam == '')">
+            <div *ngIf="(this.eventDetailContent.ArtistTeamList.length != 0 || this.eventDetailContent.ArtistTeam == '') || (this.categoryForArtistDisplay != 'Music')">
               <div class="container mt-5 mb-5 d-flex justify-content-center w-50 card p-0" style="color: rgb(200, 0, 0); border-radius: 60px; font-weight: 600; text-align: center; font-size: 12px;">
                 No music related artist details to show
               </div>
             </div>
-            <div *ngIf="this.artistContentList?.length > 0 && this.eventDetailContent.ArtistTeamList.length == 0">
+            <div *ngIf="this.artistContentList?.length > 0 && this.eventDetailContent.ArtistTeamList.length == 0 && (this.categoryForArtistDisplay == 'Music')">
 
               <div id="carouselExampleIndicators" class="row carousel slide pr-5 pl-0" data-bs-ride="false">
                 <button class="col carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" *ngIf="artistContentList?.length > 1">
