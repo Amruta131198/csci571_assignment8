@@ -395,7 +395,7 @@ export class EventPageComponent implements OnInit {
             if(response.hasOwnProperty('venues') && response.venues.length > 0){
               for(var k = 0; k < response.venues.length; ++k){
 
-                if(response.venues[k].name != this.eventDetailContent.Venue){
+                if(response.venues[k].name.toUpperCase() != this.eventDetailContent.Venue.toUpperCase()){
                   continue
                 }
 
