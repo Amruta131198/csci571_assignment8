@@ -173,6 +173,11 @@ mat-spinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     justify-content: space-around!important;
 }
 
+.carousel-control-next, .carousel-control-prev
+{
+    width: 10%;
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     #artistDetailCol2, #artistDetailCol3, #artistDetailCol4 {
