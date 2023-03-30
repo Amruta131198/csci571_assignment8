@@ -111,12 +111,12 @@ h5{
     /* line-height: 1.8em; */
   }
 
-.modal-dialog
-{
+/* .modal-dialog
+{ */
     /* width: auto;
     margin: var(--bs-modal-margin);
     box-sizing: border-box; */
-}
+/* } */
 
 
 /* .modal-backdrop {
