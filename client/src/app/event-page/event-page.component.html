@@ -285,13 +285,13 @@
 
     <!-- Modal -->
     <div class="modal fade" id="EventVenueModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
+      <div role="document" class="modal-dialog modal-dialog-centered" style="display: block;">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Event Venue</h5>
           </div>
-          <div class="modal-body">
-            <google-map [options]="mapOptions" width="400px" height="400px" align="center">
+          <div class="modal-body px-2" style="position: relative;">
+            <google-map [options]="mapOptions" width="auto" height="400px" align="center">
               <map-marker [position]="marker.position"></map-marker>
             </google-map>
           </div>

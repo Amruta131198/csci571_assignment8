@@ -113,10 +113,13 @@ h5{
 
 .modal-dialog
 {
-    width: fit-content;
+    /* width: auto;
+    margin: var(--bs-modal-margin);
+    box-sizing: border-box; */
 }
 
-.modal-backdrop {
+
+/* .modal-backdrop {
     --bs-backdrop-zindex: 1050;
     --bs-backdrop-bg: #000;
     --bs-backdrop-opacity: 0.5;
@@ -127,7 +130,7 @@ h5{
     width: 100vw;
     height: 100vh;
     background-color: var(--bs-backdrop-bg);
-}
+} */
 
 mat-tab-header {
     background-color: #46ffe7d2;
